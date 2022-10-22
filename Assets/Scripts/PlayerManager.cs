@@ -6,8 +6,6 @@ public class PlayerManager : MonoBehaviour
 {
     Touch touch;
 
-    Vector3 newPos;
-
 
     // Update is called once per frame
     void Update()
@@ -15,11 +13,18 @@ public class PlayerManager : MonoBehaviour
         if(Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            if(touch.phase == TouchPhase.Moved)
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+            
+            if(touch.phase == TouchPhase.Began)
             {
-                newPos = Camera.main.ScreenToWorldPoint(touch.position);
-                newPos.z = 0f;
-                transform.position = newPos;
+                if (hit.collider != null)
+                {
+                    hit.collider.GetComponent<Transform>().localScale = new Vector3(2, 2, 0);
+                    Color newColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
+                    hit.collider.GetComponent<SpriteRenderer>().color = newColor;
+                }
+
             }
             
         }
