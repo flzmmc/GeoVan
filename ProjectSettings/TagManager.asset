@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - "\xDC\xE7gen"
+  - Kare
+  - "Dikd\xF6rtgen"
+  - Daire
   layers:
   - Default
   - TransparentFX
