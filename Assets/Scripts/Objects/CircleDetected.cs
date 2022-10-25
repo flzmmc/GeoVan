@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CircleDetected : ObjectDetected
 {
-    
+    public static int circleNum;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        circleNum = 0;
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class CircleDetected : ObjectDetected
             {
                 circleNum++;
                 Debug.Log("Daire: " + circleNum);
-                gameObject.SetActive(false);
+                hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
             }
         }

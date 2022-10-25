@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TriangleDetected : ObjectDetected
 {
-    
+    public static int triangleNum;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        triangleNum = 0;
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class TriangleDetected : ObjectDetected
                 triangleNum++;
 
                 Debug.Log("Üçgen: " + triangleNum);
-                gameObject.SetActive(false);
+                hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
             }
         }

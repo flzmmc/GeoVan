@@ -9,11 +9,10 @@ public class ObjectDetected : MonoBehaviour
     protected Ray ray;
     protected RaycastHit2D hit;
 
-    public static int circleNum, rectangleNum, squareNum, triangleNum;
+    
 
     private void Start()
     {
-        Debug.Log("Script çalýþtý");
     }
 
     // Update is called once per frame

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class RectangleDetected : ObjectDetected
 {
-    
+    public static int rectangleNum;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rectangleNum = 0;
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class RectangleDetected : ObjectDetected
                 rectangleNum++;
 
                 Debug.Log("Dikdörtgen: " + rectangleNum);
-                gameObject.SetActive(false);
+                hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
             }
         }

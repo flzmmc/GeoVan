@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class SquareDetected : ObjectDetected
 {
-    
+    public static int squareNum;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        squareNum = 0;
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class SquareDetected : ObjectDetected
             {
                 squareNum++;
                 Debug.Log("Kare: " + squareNum);
-                gameObject.SetActive(false);
+                hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
             }
         }
