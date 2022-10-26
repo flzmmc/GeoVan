@@ -16,6 +16,8 @@ public class TriangleDetected : ObjectDetected
     void Update()
     {
         TouchDetect();
+
+        NextLevel(triangleNum);
     }
 
     public override void TouchDetect()

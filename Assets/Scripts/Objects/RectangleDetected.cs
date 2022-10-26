@@ -16,6 +16,8 @@ public class RectangleDetected : ObjectDetected
     void Update()
     {
         TouchDetect();
+
+        NextLevel(rectangleNum);
     }
 
     public override void TouchDetect()

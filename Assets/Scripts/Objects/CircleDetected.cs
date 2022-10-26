@@ -6,6 +6,8 @@ public class CircleDetected : ObjectDetected
 {
     public static int circleNum;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,8 @@ public class CircleDetected : ObjectDetected
     void Update()
     {
         TouchDetect();
+
+        NextLevel(circleNum);
     }
 
     public override void TouchDetect()

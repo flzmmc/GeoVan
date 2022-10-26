@@ -16,6 +16,8 @@ public class SquareDetected : ObjectDetected
     void Update()
     {
         TouchDetect();
+
+        NextLevel(squareNum);
     }
 
     public override void TouchDetect()

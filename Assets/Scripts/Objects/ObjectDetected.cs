@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectDetected : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class ObjectDetected : MonoBehaviour
     protected Ray ray;
     protected RaycastHit2D hit;
 
-    
+    [SerializeField] int maxNum;
 
     private void Start()
     {
@@ -30,4 +31,13 @@ public class ObjectDetected : MonoBehaviour
 
         }
     }
+
+    public void NextLevel(int num)
+    {
+        if(num == maxNum)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+
 }
