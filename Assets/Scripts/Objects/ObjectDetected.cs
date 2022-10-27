@@ -36,7 +36,15 @@ public class ObjectDetected : MonoBehaviour
     {
         if(num == maxNum)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if(SceneManager.GetActiveScene().buildIndex +1 == null)
+            {
+                return;
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            
         }
     }
 
