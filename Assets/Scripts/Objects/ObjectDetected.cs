@@ -10,10 +10,11 @@ public class ObjectDetected : MonoBehaviour
     protected Ray ray;
     protected RaycastHit2D hit;
 
-    [SerializeField] int maxNum;
+    public static int maxNum;
 
     private void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -36,15 +37,7 @@ public class ObjectDetected : MonoBehaviour
     {
         if(num == maxNum)
         {
-            if(SceneManager.GetActiveScene().buildIndex +1 == null)
-            {
-                return;
-            }
-            else
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
-            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 

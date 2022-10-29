@@ -10,6 +10,26 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
+    public void PauseButton()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeButton()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void RestartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void MenuButton()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
+
     public void ExitButton()
     {
         Application.Quit();

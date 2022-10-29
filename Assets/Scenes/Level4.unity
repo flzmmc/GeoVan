@@ -219,6 +219,10 @@ PrefabInstance:
       value: Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
+      propertyPath: type
+      value: Irregular
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
       propertyPath: spawnObject
       value: 
       objectReference: {fileID: 2391128482702605193, guid: d2f3851ed5f5e044e8d5df1e9f7ca82b, type: 3}
