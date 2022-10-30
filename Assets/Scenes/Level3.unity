@@ -139,6 +139,14 @@ PrefabInstance:
       value: Irregular
       objectReference: {fileID: 0}
     - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
+      propertyPath: sizeMax
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
+      propertyPath: sizeMin
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
       propertyPath: spawnObject
       value: 
       objectReference: {fileID: 9157064887292211370, guid: 23b2d84a64d777445a120b8fa7ed7190, type: 3}

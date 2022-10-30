@@ -11,14 +11,19 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] float minX, maxX;
     [SerializeField] float minY, maxY;
 
+    [SerializeField] float sizeMin, sizeMax;
+
+    [SerializeField] bool randomColorCheck;
 
     [SerializeField] string type;
-    
+
+    SpriteRenderer objectSR;
 
     // Start is called before the first frame update
     void Start()
     {
         ObjectDetected.maxNum = maxNum;
+        objectSR = spawnObject.GetComponent<SpriteRenderer>();
         Spawn();
     }
 
@@ -39,9 +44,10 @@ public class SpawnManager : MonoBehaviour
 
             float radius = SetSize(type);
 
-            
-            
+            if (randomColorCheck) ChangeColor();
+            else objectSR.color = Color.white;
 
+            Debug.Log(Random.Range(0, 1));
             Collider2D isCollide = Physics2D.OverlapCircle(spawnPos, radius);
             if (!isCollide)
             {
@@ -60,7 +66,7 @@ public class SpawnManager : MonoBehaviour
         float radius = 1f;
         if (type == "Regular")
         {
-            float size = Random.Range(1f, 1.5f);
+            float size = Random.Range(sizeMin, sizeMax);
 
             radius = size;
 
@@ -70,8 +76,8 @@ public class SpawnManager : MonoBehaviour
         {
             bool check = true;
 
-            float sizeX = Random.Range(0.75f, 1.5f);
-            float sizeY = Random.Range(0.75f, 1.5f);
+            float sizeX = Random.Range(sizeMin, sizeMax);
+            float sizeY = Random.Range(sizeMin, sizeMax);
 
 
 
@@ -98,6 +104,29 @@ public class SpawnManager : MonoBehaviour
         }
 
         return radius;
+    }
+
+
+    void ChangeColor()
+    {
+        int random = Random.Range(0, 4);
+        switch (random)
+        {
+            case 0:
+                objectSR.color = Color.red;
+                break;
+            case 1:
+                objectSR.color = Color.yellow;
+                break;
+            case 2:
+                objectSR.color = Color.blue;
+                break;
+            case 3:
+                objectSR.color = Color.green;
+                break;
+            default:
+                break;
+        }
     }
 
 }

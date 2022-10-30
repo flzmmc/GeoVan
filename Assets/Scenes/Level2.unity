@@ -227,6 +227,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
+      propertyPath: sizeMax
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
+      propertyPath: sizeMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
       propertyPath: spawnObject
       value: 
       objectReference: {fileID: 9056792133828440503, guid: 7f1ea2a76c4b4c64d8a8ecd6ab996a44, type: 3}
