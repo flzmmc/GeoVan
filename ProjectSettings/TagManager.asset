@@ -8,6 +8,22 @@ TagManager:
   - Kare
   - "Dikd\xF6rtgen"
   - Daire
+  - KDaire
+  - MDaire
+  - SDaire
+  - YDaire
+  - KKare
+  - YKare
+  - SKare
+  - "KDikd\xF6rtgen"
+  - "YDikd\xF6rtgen"
+  - "SDikd\xF6rtgen"
+  - "K\xDC\xE7gen"
+  - "S\xDC\xE7gen"
+  - "Y\xDC\xE7gen"
+  - MKare
+  - "MDikd\xF6rtgen"
+  - "M\xDC\xE7gen"
   layers:
   - Default
   - TransparentFX

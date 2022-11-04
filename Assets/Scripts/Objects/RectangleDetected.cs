@@ -10,12 +10,19 @@ public class RectangleDetected : ObjectDetected
     void Start()
     {
         rectangleNum = 0;
+        allTags = new List<string> { "MDikdörtgen", "YDikdörtgen", "KDikdörtgen", "SDikdörtgen" };
+
+        if (correctTag == null) ChooseTag(allTags);
+        else return;
+        Debug.Log(correctTag);
+        Debug.Log("Maximum number: " + maxNum);
     }
 
     // Update is called once per frame
     void Update()
     {
-        TouchDetect();
+        if (!randomColorCheck) TouchDetect();
+        else TouchColorDetect();
 
         NextLevel(rectangleNum);
     }
@@ -29,7 +36,20 @@ public class RectangleDetected : ObjectDetected
             {
                 rectangleNum++;
 
-                Debug.Log("Dikdörtgen: " + rectangleNum);
+                hit.collider.gameObject.SetActive(false);
+                //Destroy(this);
+            }
+        }
+    }
+
+    public override void TouchColorDetect()
+    {
+        base.TouchColorDetect();
+        if (touch.phase == TouchPhase.Began)
+        {
+            if (hit.collider != null && hit.collider.gameObject.CompareTag(correctTag))
+            {
+                rectangleNum++;
                 hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
             }

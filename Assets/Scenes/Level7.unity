@@ -223,6 +223,10 @@ PrefabInstance:
       value: Irregular
       objectReference: {fileID: 0}
     - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
+      propertyPath: maxNum
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
       propertyPath: sizeMax
       value: 1.5
       objectReference: {fileID: 0}
@@ -238,6 +242,30 @@ PrefabInstance:
       propertyPath: randomColorCheck
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
+      propertyPath: spawnObjects.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
+      propertyPath: spawnObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 9157064887292211370, guid: 54d6b8eaa2e665541a4e9f6d3959ad88, type: 3}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
+      propertyPath: spawnObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 9157064887292211370, guid: ea528050d5744b34dabbb3702ba2ee3b, type: 3}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
+      propertyPath: spawnObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 9157064887292211370, guid: 77854b7a0ef159c4aa2cd9f36abaaa5c, type: 3}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
+      propertyPath: spawnObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 9157064887292211370, guid: 7a7be2972435eae4e9e875552a4e7e4d, type: 3}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
+      propertyPath: spawnObjects.Array.data[4]
+      value: 
+      objectReference: {fileID: 9157064887292211370, guid: 7a7be2972435eae4e9e875552a4e7e4d, type: 3}
     - target: {fileID: 5105330820285632663, guid: 099ab7af3b9a34049aee8746f03694f1, type: 3}
       propertyPath: m_RootOrder
       value: 1

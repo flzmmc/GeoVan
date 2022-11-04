@@ -10,12 +10,19 @@ public class TriangleDetected : ObjectDetected
     void Start()
     {
         triangleNum = 0;
+        allTags = new List<string> { "MÜçgen", "YÜçgen", "KÜçgen", "SÜçgen" };
+
+        if (correctTag == null) ChooseTag(allTags);
+        else return;
+        Debug.Log(correctTag);
+        Debug.Log("Maximum number: " + maxNum);
     }
 
     // Update is called once per frame
     void Update()
     {
-        TouchDetect();
+        if (!randomColorCheck) TouchDetect();
+        else TouchColorDetect();
 
         NextLevel(triangleNum);
     }
@@ -29,7 +36,20 @@ public class TriangleDetected : ObjectDetected
             {
                 triangleNum++;
 
-                Debug.Log("Üçgen: " + triangleNum);
+                hit.collider.gameObject.SetActive(false);
+                //Destroy(this);
+            }
+        }
+    }
+
+    public override void TouchColorDetect()
+    {
+        base.TouchColorDetect();
+        if (touch.phase == TouchPhase.Began)
+        {
+            if (hit.collider != null && hit.collider.gameObject.CompareTag(correctTag))
+            {
+                triangleNum++;
                 hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
             }

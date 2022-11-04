@@ -10,12 +10,19 @@ public class SquareDetected : ObjectDetected
     void Start()
     {
         squareNum = 0;
+        allTags = new List<string> { "MKare", "YKare", "KKare", "SKare" };
+
+        if (correctTag == null) ChooseTag(allTags);
+        else return;
+        Debug.Log(correctTag);
+        Debug.Log("Maximum number: " + maxNum);
     }
 
     // Update is called once per frame
     void Update()
     {
-        TouchDetect();
+        if (!randomColorCheck) TouchDetect();
+        else TouchColorDetect();
 
         NextLevel(squareNum);
     }
@@ -28,7 +35,20 @@ public class SquareDetected : ObjectDetected
             if (hit.collider != null && hit.collider.gameObject.CompareTag("Kare"))
             {
                 squareNum++;
-                Debug.Log("Kare: " + squareNum);
+                hit.collider.gameObject.SetActive(false);
+                //Destroy(this);
+            }
+        }
+    }
+
+    public override void TouchColorDetect()
+    {
+        base.TouchColorDetect();
+        if (touch.phase == TouchPhase.Began)
+        {
+            if (hit.collider != null && hit.collider.gameObject.CompareTag(correctTag))
+            {
+                squareNum++;
                 hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
             }

@@ -17,13 +17,24 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] string type;
 
+    [SerializeField] List<GameObject> spawnObjects;
+
+    public static List<int> maxNumbers =new List<int> {0, 0, 0, 0};
+
     SpriteRenderer objectSR;
+
+    Renderer _renderer;
+    MaterialPropertyBlock objMPB;
 
     // Start is called before the first frame update
     void Start()
     {
-        ObjectDetected.maxNum = maxNum;
-        objectSR = spawnObject.GetComponent<SpriteRenderer>();
+        if(!randomColorCheck) ObjectDetected.maxNum = maxNum;
+        ObjectDetected.randomColorCheck = randomColorCheck;
+        //ObjectDetected.correctTag = "KDaire";
+        //objectSR = spawnObject.GetComponent<SpriteRenderer>();
+        //_renderer = spawnObject.GetComponent<Renderer>();
+        //objMPB = new MaterialPropertyBlock();
         Spawn();
     }
 
@@ -31,6 +42,15 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnDisable()
+    {
+        for(int i=0; i<maxNumbers.Count; i++)
+        {
+            maxNumbers[i] = 0;
+        }
+        ObjectDetected.correctTag = null;
     }
 
     void Spawn()
@@ -41,16 +61,14 @@ public class SpawnManager : MonoBehaviour
             float yPos = Random.Range(minY, maxY);
 
             Vector3 spawnPos = new Vector3(xPos, yPos, 0f);
-
             float radius = SetSize(type);
 
-            if (randomColorCheck) ChangeColor();
-            else objectSR.color = Color.white;
 
-            Debug.Log(Random.Range(0, 1));
             Collider2D isCollide = Physics2D.OverlapCircle(spawnPos, radius);
             if (!isCollide)
             {
+                if (randomColorCheck) ChangeColor();
+
                 Instantiate(spawnObject, spawnPos, Quaternion.identity);
             }
             else
@@ -112,21 +130,51 @@ public class SpawnManager : MonoBehaviour
         int random = Random.Range(0, 4);
         switch (random)
         {
+
             case 0:
-                objectSR.color = Color.red;
+                spawnObject = spawnObjects[0];
+                maxNumbers[0]++;
+                Debug.Log("Mavi: " + maxNumbers[0]);
+                //objectSR.color = Color.red;
+                //    Texture2D tex = objectSR.sprite.texture;
+                //    objMPB.SetColor("_Color", new Color(1, 0, 0));
+                //    objMPB.SetTexture("objMPB", tex);
+                //    _renderer.SetPropertyBlock(objMPB);
+                //    Debug.Log(objMPB.GetColor("_Color"));
+                //    //Debug.Log(_renderer.material.color);
                 break;
             case 1:
-                objectSR.color = Color.yellow;
+                spawnObject = spawnObjects[1];
+                maxNumbers[1]++;
+                Debug.Log("Yeþil: " + maxNumbers[1]);
+                //objectSR.color = Color.yellow;
+                //    objMPB.SetColor("_Color", Color.yellow);
+                //    _renderer.SetPropertyBlock(objMPB);
+                //    //Debug.Log("Yellow");
                 break;
             case 2:
-                objectSR.color = Color.blue;
+                spawnObject = spawnObjects[2];
+                maxNumbers[2]++;
+                Debug.Log("Sarý: " + maxNumbers[2]);
+                //objectSR.color = Color.blue;
+                //    objMPB.SetColor("_Color", new Color(0, 0, 1));
+                //    _renderer.SetPropertyBlock(objMPB);
+                //    //Debug.Log("Blue");
                 break;
             case 3:
-                objectSR.color = Color.green;
+                spawnObject = spawnObjects[3];
+                maxNumbers[3]++;
+                Debug.Log("Kýrmýzý: " + maxNumbers[3]);
+                //objectSR.color = Color.green;
+                //    objMPB.SetColor("_Color", new Color(0, 1, 0));
+                //    _renderer.SetPropertyBlock(objMPB);
+                //    //Debug.Log("Green");
                 break;
             default:
                 break;
         }
+        //objectSR.SetPropertyBlock(objMPB);
+        //Debug.Log(objectSR.material.color);
     }
 
 }
