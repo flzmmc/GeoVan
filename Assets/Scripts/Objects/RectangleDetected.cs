@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class RectangleDetected : ObjectDetected
 {
-    public static int rectangleNum;
+    //public static int rectangleNum;
 
     // Start is called before the first frame update
     void Start()
     {
-        rectangleNum = 0;
+        currentNum = 0;
         allTags = new List<string> { "MDikdörtgen", "YDikdörtgen", "KDikdörtgen", "SDikdörtgen" };
 
-        if (correctTag == null) ChooseTag(allTags);
+        if (correctTag == null && randomColorCheck) ChooseTag(allTags);
         else return;
         Debug.Log(correctTag);
         Debug.Log("Maximum number: " + maxNum);
@@ -24,7 +24,7 @@ public class RectangleDetected : ObjectDetected
         if (!randomColorCheck) TouchDetect();
         else TouchColorDetect();
 
-        NextLevel(rectangleNum);
+        NextLevel(currentNum);
     }
 
     public override void TouchDetect()
@@ -34,7 +34,7 @@ public class RectangleDetected : ObjectDetected
         {
             if (hit.collider != null && hit.collider.gameObject.CompareTag("Dikdörtgen"))
             {
-                rectangleNum++;
+                currentNum++;
 
                 hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
@@ -49,7 +49,7 @@ public class RectangleDetected : ObjectDetected
         {
             if (hit.collider != null && hit.collider.gameObject.CompareTag(correctTag))
             {
-                rectangleNum++;
+                currentNum++;
                 hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
             }

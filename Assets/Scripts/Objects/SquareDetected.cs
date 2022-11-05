@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SquareDetected : ObjectDetected
 {
-    public static int squareNum;
+    //public static int squareNum;
 
     // Start is called before the first frame update
     void Start()
     {
-        squareNum = 0;
+        currentNum = 0;
         allTags = new List<string> { "MKare", "YKare", "KKare", "SKare" };
 
-        if (correctTag == null) ChooseTag(allTags);
+        if (correctTag == null && randomColorCheck) ChooseTag(allTags);
         else return;
         Debug.Log(correctTag);
         Debug.Log("Maximum number: " + maxNum);
@@ -24,7 +24,7 @@ public class SquareDetected : ObjectDetected
         if (!randomColorCheck) TouchDetect();
         else TouchColorDetect();
 
-        NextLevel(squareNum);
+        NextLevel(currentNum);
     }
 
     public override void TouchDetect()
@@ -34,7 +34,7 @@ public class SquareDetected : ObjectDetected
         {
             if (hit.collider != null && hit.collider.gameObject.CompareTag("Kare"))
             {
-                squareNum++;
+                currentNum++;
                 hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
             }
@@ -48,7 +48,7 @@ public class SquareDetected : ObjectDetected
         {
             if (hit.collider != null && hit.collider.gameObject.CompareTag(correctTag))
             {
-                squareNum++;
+                currentNum++;
                 hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
             }

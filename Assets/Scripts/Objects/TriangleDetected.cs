@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class TriangleDetected : ObjectDetected
 {
-    public static int triangleNum;
+    //public static int triangleNum;
 
     // Start is called before the first frame update
     void Start()
     {
-        triangleNum = 0;
+        currentNum = 0;
         allTags = new List<string> { "MÜçgen", "YÜçgen", "KÜçgen", "SÜçgen" };
 
-        if (correctTag == null) ChooseTag(allTags);
+        if (correctTag == null && randomColorCheck) ChooseTag(allTags);
         else return;
         Debug.Log(correctTag);
         Debug.Log("Maximum number: " + maxNum);
@@ -24,7 +24,7 @@ public class TriangleDetected : ObjectDetected
         if (!randomColorCheck) TouchDetect();
         else TouchColorDetect();
 
-        NextLevel(triangleNum);
+        NextLevel(currentNum);
     }
 
     public override void TouchDetect()
@@ -34,7 +34,7 @@ public class TriangleDetected : ObjectDetected
         {
             if (hit.collider != null && hit.collider.gameObject.CompareTag("Üçgen"))
             {
-                triangleNum++;
+                currentNum++;
 
                 hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
@@ -49,7 +49,7 @@ public class TriangleDetected : ObjectDetected
         {
             if (hit.collider != null && hit.collider.gameObject.CompareTag(correctTag))
             {
-                triangleNum++;
+                currentNum++;
                 hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
             }

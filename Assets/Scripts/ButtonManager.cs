@@ -22,6 +22,7 @@ public class ButtonManager : MonoBehaviour
 
     public void RestartButton()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

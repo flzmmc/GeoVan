@@ -32,9 +32,9 @@ public class SpawnManager : MonoBehaviour
         if(!randomColorCheck) ObjectDetected.maxNum = maxNum;
         ObjectDetected.randomColorCheck = randomColorCheck;
         //ObjectDetected.correctTag = "KDaire";
-        //objectSR = spawnObject.GetComponent<SpriteRenderer>();
-        //_renderer = spawnObject.GetComponent<Renderer>();
-        //objMPB = new MaterialPropertyBlock();
+        objectSR = spawnObject.GetComponent<SpriteRenderer>();
+        _renderer = spawnObject.GetComponent<Renderer>();
+        objMPB = new MaterialPropertyBlock();
         Spawn();
     }
 
@@ -132,42 +132,46 @@ public class SpawnManager : MonoBehaviour
         {
 
             case 0:
-                spawnObject = spawnObjects[0];
+                // spawnObject = spawnObjects[0];
+                //objectSR.color = Color.blue;
+                //spawnObject.tag = "MDaire";
                 maxNumbers[0]++;
-                Debug.Log("Mavi: " + maxNumbers[0]);
                 //objectSR.color = Color.red;
                 //    Texture2D tex = objectSR.sprite.texture;
-                //    objMPB.SetColor("_Color", new Color(1, 0, 0));
+                    objMPB.SetColor("_Color", new Color(1, 0, 0));
                 //    objMPB.SetTexture("objMPB", tex);
-                //    _renderer.SetPropertyBlock(objMPB);
+                    objectSR.SetPropertyBlock(objMPB);
                 //    Debug.Log(objMPB.GetColor("_Color"));
                 //    //Debug.Log(_renderer.material.color);
                 break;
             case 1:
-                spawnObject = spawnObjects[1];
+                //spawnObject = spawnObjects[1];
+                //objectSR.color = Color.green;
+                //spawnObject.tag = "YDaire";
                 maxNumbers[1]++;
-                Debug.Log("Yeþil: " + maxNumbers[1]);
-                //objectSR.color = Color.yellow;
-                //    objMPB.SetColor("_Color", Color.yellow);
-                //    _renderer.SetPropertyBlock(objMPB);
+                objectSR.color = Color.yellow;
+                objMPB.SetColor("_Color", Color.yellow);
+                //objectSR.SetPropertyBlock(objMPB);
                 //    //Debug.Log("Yellow");
                 break;
             case 2:
-                spawnObject = spawnObjects[2];
+                //spawnObject = spawnObjects[2];
+                //objectSR.color = Color.red;
+                //spawnObject.tag = "KDaire";
                 maxNumbers[2]++;
-                Debug.Log("Sarý: " + maxNumbers[2]);
-                //objectSR.color = Color.blue;
-                //    objMPB.SetColor("_Color", new Color(0, 0, 1));
-                //    _renderer.SetPropertyBlock(objMPB);
+                objectSR.color = Color.blue;
+                objMPB.SetColor("_Color", new Color(0, 0, 1));
+                //objectSR.SetPropertyBlock(objMPB);
                 //    //Debug.Log("Blue");
                 break;
             case 3:
-                spawnObject = spawnObjects[3];
+                //spawnObject = spawnObjects[3];
+                //objectSR.color = Color.yellow;
+                //spawnObject.tag = "SDaire";
                 maxNumbers[3]++;
-                Debug.Log("Kýrmýzý: " + maxNumbers[3]);
-                //objectSR.color = Color.green;
-                //    objMPB.SetColor("_Color", new Color(0, 1, 0));
-                //    _renderer.SetPropertyBlock(objMPB);
+                objectSR.color = Color.green;
+                objMPB.SetColor("_Color", new Color(0, 1, 0));
+                //objectSR.SetPropertyBlock(objMPB);
                 //    //Debug.Log("Green");
                 break;
             default:

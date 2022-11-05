@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class CircleDetected : ObjectDetected
 {
-    public static int circleNum;
+    //public static int circleNum;
 
     SpriteRenderer circleSR;
+
+    static int number = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        circleNum = 0;
+        currentNum = 0;
         allTags = new List<string>{ "MDaire", "YDaire", "KDaire", "SDaire"};
 
-        if (correctTag == null) ChooseTag(allTags);
+        //objectSR = GetComponent<SpriteRenderer>();
+
+        if (correctTag == null && randomColorCheck) ChooseTag(allTags);
         else return;
         Debug.Log(correctTag);
         Debug.Log("Maximum number: " + maxNum);
@@ -32,7 +36,7 @@ public class CircleDetected : ObjectDetected
         if (!randomColorCheck) TouchDetect();
         else TouchColorDetect();
 
-        NextLevel(circleNum);
+        NextLevel(currentNum);
 
         //if (Input.touchCount > 0)
         //{
@@ -56,9 +60,11 @@ public class CircleDetected : ObjectDetected
         base.TouchDetect();
         if(touch.phase == TouchPhase.Began)
         {
-            if(hit.collider != null && hit.collider.gameObject.CompareTag("Daire"))
+            if(hit.collider != null && hit.collider.gameObject.CompareTag("Daire") && hit.collider.gameObject == this.gameObject)
             {
-                circleNum++;
+                //currentNum++;
+                number++;
+                Debug.Log(number);
                 hit.collider.gameObject.SetActive(false);
                 //Destroy(this);
             }
@@ -70,10 +76,18 @@ public class CircleDetected : ObjectDetected
         base.TouchColorDetect();
         if (touch.phase == TouchPhase.Began)
         {
-            if (hit.collider != null && hit.collider.gameObject.CompareTag(correctTag))
+            if (hit.collider != null && hit.collider.gameObject.CompareTag("Daire") && hit.collider.gameObject == this.gameObject)
             {
-                circleNum++;
-                hit.collider.gameObject.SetActive(false);
+
+                objectSR = hit.collider.gameObject.GetComponent<SpriteRenderer>();
+                //Debug.Log("Ýlk temas");
+                if(objectSR.color == Color.blue)
+                {
+                    //currentNum++;
+                    Debug.Log("Mavi daire");
+                    hit.collider.gameObject.SetActive(false);
+                }
+                
                 //Destroy(this);
             }
         }

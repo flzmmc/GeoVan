@@ -13,8 +13,10 @@ public class ObjectDetected : MonoBehaviour
     public static string correctTag;
     protected List<string> allTags;
 
-    public static int maxNum;
+    public static int maxNum, currentNum;
     public static bool randomColorCheck;
+
+    protected SpriteRenderer objectSR;
 
     private void Start()
     {
@@ -50,6 +52,7 @@ public class ObjectDetected : MonoBehaviour
 
     public void NextLevel(int num)
     {
+        Debug.Log("Current: " + currentNum + "Number: " + num);
         if(num == maxNum)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
