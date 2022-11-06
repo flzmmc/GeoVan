@@ -27,27 +27,21 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Spawn();
         for (int i = 0; i < maxNumbers.Count; i++)
         {
             maxNumbers[i] = 0;
         }
+        if (!randomColorCheck && !randomObjectCheck) ScoreManager.maxNum = maxNum;
+        
 
-        if(!randomObjectCheck) ObjectDetected.correctTag = spawnObject.tag;
-        else
-        {
-            index = Random.Range(0, spawnObjects.Count);
-            ObjectDetected.correctTag = spawnObjects[index].tag;
-            ScoreManager.maxNum = maxNumbers[index];
-            Debug.Log(spawnObjects[index].tag);
-        }
-
-        if (!randomColorCheck) ScoreManager.maxNum = maxNum;
+        
 
         ObjectDetected.randomColorCheck = randomColorCheck;
 
-        objectSR = spawnObject.GetComponent<SpriteRenderer>();
+        
 
-        Spawn();
+        
     }
 
     // Update is called once per frame
@@ -70,6 +64,7 @@ public class SpawnManager : MonoBehaviour
             Collider2D isCollide = Physics2D.OverlapCircle(spawnPos, radius);
             if (!isCollide)
             {
+                objectSR = spawnObject.GetComponent<SpriteRenderer>();
                 if (randomObjectCheck) RandomObstacle();
                 if (randomColorCheck) ChangeColor();
                 else objectSR.color = Color.white;
@@ -80,6 +75,19 @@ public class SpawnManager : MonoBehaviour
             {
                 i--;
                 Debug.Log("Collide var");
+            }
+            if(i == maxNum - 1)
+            {
+                if (!randomObjectCheck) ObjectDetected.correctTag = spawnObject.tag;
+                else
+                {
+                    index = Random.Range(0, spawnObjects.Count);
+                    ObjectDetected.correctTag = spawnObjects[index].tag;
+                    ScoreManager.maxNum = maxNumbers[index];
+                    Debug.Log(spawnObjects[index].tag);
+                    Debug.Log("Max numbers: " + maxNumbers[index]);
+                }
+
             }
         }
     }
@@ -164,18 +172,22 @@ public class SpawnManager : MonoBehaviour
         {
             case 0:
                 spawnObject = spawnObjects[0];
+                Debug.Log("Daire oluþturuldu");
                 maxNumbers[0]++;
                 break;
             case 1:
-                spawnObject = spawnObjects[0];
+                spawnObject = spawnObjects[1];
+                Debug.Log("Kare oluþturuldu");
                 maxNumbers[1]++;
                 break;
             case 2:
-                spawnObject = spawnObjects[0];
+                spawnObject = spawnObjects[2];
+                Debug.Log("Dikdörtgen oluþturuldu");
                 maxNumbers[2]++;
                 break;
             case 3:
-                spawnObject = spawnObjects[0];
+                spawnObject = spawnObjects[3];
+                Debug.Log("Üçgen oluþturuldu");
                 maxNumbers[3]++;
                 break;
             default:
