@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] GameObject spawnObject;
+    [SerializeField] List<GameObject> spawnObjects;
 
     [SerializeField] int maxNum;
 
@@ -13,28 +14,39 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] float sizeMin, sizeMax;
 
-    [SerializeField] bool randomColorCheck;
+    [SerializeField] bool randomColorCheck, randomObjectCheck;
 
     [SerializeField] string type;
 
-    [SerializeField] List<GameObject> spawnObjects;
-
     public static List<int> maxNumbers =new List<int> {0, 0, 0, 0};
 
-    SpriteRenderer objectSR;
+    int index;
 
-    Renderer _renderer;
-    MaterialPropertyBlock objMPB;
+    SpriteRenderer objectSR;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(!randomColorCheck) ObjectDetected.maxNum = maxNum;
+        for (int i = 0; i < maxNumbers.Count; i++)
+        {
+            maxNumbers[i] = 0;
+        }
+
+        if(!randomObjectCheck) ObjectDetected.correctTag = spawnObject.tag;
+        else
+        {
+            index = Random.Range(0, spawnObjects.Count);
+            ObjectDetected.correctTag = spawnObjects[index].tag;
+            ScoreManager.maxNum = maxNumbers[index];
+            Debug.Log(spawnObjects[index].tag);
+        }
+
+        if (!randomColorCheck) ScoreManager.maxNum = maxNum;
+
         ObjectDetected.randomColorCheck = randomColorCheck;
-        //ObjectDetected.correctTag = "KDaire";
+
         objectSR = spawnObject.GetComponent<SpriteRenderer>();
-        _renderer = spawnObject.GetComponent<Renderer>();
-        objMPB = new MaterialPropertyBlock();
+
         Spawn();
     }
 
@@ -42,15 +54,6 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    private void OnDisable()
-    {
-        for(int i=0; i<maxNumbers.Count; i++)
-        {
-            maxNumbers[i] = 0;
-        }
-        ObjectDetected.correctTag = null;
     }
 
     void Spawn()
@@ -67,7 +70,9 @@ public class SpawnManager : MonoBehaviour
             Collider2D isCollide = Physics2D.OverlapCircle(spawnPos, radius);
             if (!isCollide)
             {
+                if (randomObjectCheck) RandomObstacle();
                 if (randomColorCheck) ChangeColor();
+                else objectSR.color = Color.white;
 
                 Instantiate(spawnObject, spawnPos, Quaternion.identity);
             }
@@ -130,55 +135,52 @@ public class SpawnManager : MonoBehaviour
         int random = Random.Range(0, 4);
         switch (random)
         {
-
             case 0:
-                // spawnObject = spawnObjects[0];
-                //objectSR.color = Color.blue;
-                //spawnObject.tag = "MDaire";
+                objectSR.color = Color.blue;
                 maxNumbers[0]++;
-                //objectSR.color = Color.red;
-                //    Texture2D tex = objectSR.sprite.texture;
-                    objMPB.SetColor("_Color", new Color(1, 0, 0));
-                //    objMPB.SetTexture("objMPB", tex);
-                    objectSR.SetPropertyBlock(objMPB);
-                //    Debug.Log(objMPB.GetColor("_Color"));
-                //    //Debug.Log(_renderer.material.color);
                 break;
             case 1:
-                //spawnObject = spawnObjects[1];
-                //objectSR.color = Color.green;
-                //spawnObject.tag = "YDaire";
+                objectSR.color = Color.green;
                 maxNumbers[1]++;
-                objectSR.color = Color.yellow;
-                objMPB.SetColor("_Color", Color.yellow);
-                //objectSR.SetPropertyBlock(objMPB);
-                //    //Debug.Log("Yellow");
                 break;
             case 2:
-                //spawnObject = spawnObjects[2];
-                //objectSR.color = Color.red;
-                //spawnObject.tag = "KDaire";
+                objectSR.color = Color.red;
                 maxNumbers[2]++;
-                objectSR.color = Color.blue;
-                objMPB.SetColor("_Color", new Color(0, 0, 1));
-                //objectSR.SetPropertyBlock(objMPB);
-                //    //Debug.Log("Blue");
+                Debug.Log("Red object" + maxNumbers[2]);
                 break;
             case 3:
-                //spawnObject = spawnObjects[3];
-                //objectSR.color = Color.yellow;
-                //spawnObject.tag = "SDaire";
+                objectSR.color = Color.yellow;
                 maxNumbers[3]++;
-                objectSR.color = Color.green;
-                objMPB.SetColor("_Color", new Color(0, 1, 0));
-                //objectSR.SetPropertyBlock(objMPB);
-                //    //Debug.Log("Green");
                 break;
             default:
                 break;
         }
-        //objectSR.SetPropertyBlock(objMPB);
-        //Debug.Log(objectSR.material.color);
+    }
+
+    void RandomObstacle()
+    {
+        int random = Random.Range(0, 4);
+        switch (random)
+        {
+            case 0:
+                spawnObject = spawnObjects[0];
+                maxNumbers[0]++;
+                break;
+            case 1:
+                spawnObject = spawnObjects[0];
+                maxNumbers[1]++;
+                break;
+            case 2:
+                spawnObject = spawnObjects[0];
+                maxNumbers[2]++;
+                break;
+            case 3:
+                spawnObject = spawnObjects[0];
+                maxNumbers[3]++;
+                break;
+            default:
+                break;
+        }
     }
 
 }

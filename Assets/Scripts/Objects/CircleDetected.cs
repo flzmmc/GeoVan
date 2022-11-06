@@ -6,90 +6,102 @@ public class CircleDetected : ObjectDetected
 {
     //public static int circleNum;
 
-    SpriteRenderer circleSR;
+    //SpriteRenderer circleSR;
 
-    static int number = 0;
+    //static int number = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentNum = 0;
-        allTags = new List<string>{ "MDaire", "YDaire", "KDaire", "SDaire"};
+    //List<Color> correctColor = new List<Color> { Color.blue, Color.green, Color.red, Color.yellow };
 
-        //objectSR = GetComponent<SpriteRenderer>();
+    //int random;
 
-        if (correctTag == null && randomColorCheck) ChooseTag(allTags);
-        else return;
-        Debug.Log(correctTag);
-        Debug.Log("Maximum number: " + maxNum);
-        //circleSR = GetComponent<SpriteRenderer>();
-        //if(GetComponent<Renderer>().material.color == Color.red)
-        //{
-        //    Debug.Log("Renderer");
-        //}
-        //Debug.Log(GetComponent<Renderer>().material.color);
-    }
+    //static bool randomCheck = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!randomColorCheck) TouchDetect();
-        else TouchColorDetect();
+    //// Start is called before the first frame update
+    //void Start()
+    //{
+    //    currentNum = 0;
+    //    allTags = new List<string>{ "MDaire", "YDaire", "KDaire", "SDaire"};
+    //    if (!randomCheck)
+    //    {
+    //        randomCheck = true;
+    //        random = Random.Range(0, 4);
+    //        Debug.Log(random);
+    //    }
+        
+    //    //objectSR = GetComponent<SpriteRenderer>();
 
-        NextLevel(currentNum);
+    //    if (correctTag == null && randomColorCheck) ChooseTag(allTags);
+    //    else return;
+    //    //Debug.Log(correctTag);
+    //    Debug.Log("Maximum number: " + maxNum);
+    //    //circleSR = GetComponent<SpriteRenderer>();
+    //    //if(GetComponent<Renderer>().material.color == Color.red)
+    //    //{
+    //    //    Debug.Log("Renderer");
+    //    //}
+    //    //Debug.Log(GetComponent<Renderer>().material.color);
+    //}
 
-        //if (Input.touchCount > 0)
-        //{
-        //    touch = Input.GetTouch(0);
-        //    ray = Camera.main.ScreenPointToRay(touch.position);
-        //    hit = Physics2D.GetRayIntersection(ray);
-        //    if (touch.phase == TouchPhase.Began)
-        //    {
-        //        if (hit.collider != null)
-        //        {
-        //            Debug.Log(circleSR.color);
-        //            //Destroy(this);
-        //        }
-        //    }
-        //}
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    if (!randomColorCheck) TouchDetect();
+    //    else TouchColorDetect();
 
-    }
+    //    NextLevel(currentNum);
 
-    public override void TouchDetect()
-    {
-        base.TouchDetect();
-        if(touch.phase == TouchPhase.Began)
-        {
-            if(hit.collider != null && hit.collider.gameObject.CompareTag("Daire") && hit.collider.gameObject == this.gameObject)
-            {
-                //currentNum++;
-                number++;
-                Debug.Log(number);
-                hit.collider.gameObject.SetActive(false);
-                //Destroy(this);
-            }
-        }
-    }
+    //    //if (Input.touchCount > 0)
+    //    //{
+    //    //    touch = Input.GetTouch(0);
+    //    //    ray = Camera.main.ScreenPointToRay(touch.position);
+    //    //    hit = Physics2D.GetRayIntersection(ray);
+    //    //    if (touch.phase == TouchPhase.Began)
+    //    //    {
+    //    //        if (hit.collider != null)
+    //    //        {
+    //    //            Debug.Log(circleSR.color);
+    //    //            //Destroy(this);
+    //    //        }
+    //    //    }
+    //    //}
 
-    public override void TouchColorDetect()
-    {
-        base.TouchColorDetect();
-        if (touch.phase == TouchPhase.Began)
-        {
-            if (hit.collider != null && hit.collider.gameObject.CompareTag("Daire") && hit.collider.gameObject == this.gameObject)
-            {
+    //}
 
-                objectSR = hit.collider.gameObject.GetComponent<SpriteRenderer>();
-                //Debug.Log("Ýlk temas");
-                if(objectSR.color == Color.blue)
-                {
-                    //currentNum++;
-                    Debug.Log("Mavi daire");
-                    hit.collider.gameObject.SetActive(false);
-                }
+    //public override void TouchDetect()
+    //{
+    //    base.TouchDetect();
+    //    if(touch.phase == TouchPhase.Began)
+    //    {
+    //        if(hit.collider != null && hit.collider.gameObject.CompareTag("Daire") && hit.collider.gameObject == this.gameObject)
+    //        {
+    //            //currentNum++;
+    //            number++;
+    //            Debug.Log(number);
+    //            hit.collider.gameObject.SetActive(false);
+    //            //Destroy(this);
+    //        }
+    //    }
+    //}
+
+    //public override void TouchColorDetect()
+    //{
+    //    base.TouchColorDetect();
+    //    if (touch.phase == TouchPhase.Began)
+    //    {
+    //        if (hit.collider != null && hit.collider.gameObject.CompareTag("Daire") && hit.collider.gameObject == this.gameObject)
+    //        {
+
+    //            objectSR = hit.collider.gameObject.GetComponent<SpriteRenderer>();
+    //            //Debug.Log("Ýlk temas");
+    //            if(objectSR.color == correctColor[random])
+    //            {
+    //                //currentNum++;
+    //                //Debug.Log("Mavi daire");
+    //                hit.collider.gameObject.SetActive(false);
+    //            }
                 
-                //Destroy(this);
-            }
-        }
-    }
+    //            //Destroy(this);
+    //        }
+    //    }
+    //}
 }

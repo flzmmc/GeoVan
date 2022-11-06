@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9056792133828440506}
   - component: {fileID: 9056792133828440501}
   - component: {fileID: 9056792133828440507}
-  - component: {fileID: 9056792133828440504}
   m_Layer: 0
   m_Name: Kare
   m_TagString: Kare
@@ -54,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d26f0a6c70e90724d9db9f0b1254166a, type: 2}
+  - {fileID: 2100000, guid: d164d936fce85f44d98aabf046aaf677, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,15 +111,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &9056792133828440504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9056792133828440503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847f57439db2eae40b67f1b2e4db95cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

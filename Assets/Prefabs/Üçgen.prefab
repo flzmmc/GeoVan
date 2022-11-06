@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2391128482702605195}
   - component: {fileID: 2391128482702605194}
   - component: {fileID: 2391128482702605196}
-  - component: {fileID: 2391128482702605197}
   m_Layer: 0
   m_Name: "\xDC\xE7gen"
   m_TagString: "\xDC\xE7gen"
@@ -54,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d26f0a6c70e90724d9db9f0b1254166a, type: 2}
+  - {fileID: 2100000, guid: d164d936fce85f44d98aabf046aaf677, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,15 +113,3 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5773587}
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
---- !u!114 &2391128482702605197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2391128482702605193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 416b50505edc35246849eb649f12336d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
