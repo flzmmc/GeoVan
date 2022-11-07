@@ -20,28 +20,23 @@ public class SpawnManager : MonoBehaviour
 
     public static List<int> maxNumbers =new List<int> {0, 0, 0, 0};
 
-    int index;
+    public static int index;
 
     SpriteRenderer objectSR;
 
     // Start is called before the first frame update
     void Start()
     {
-        Spawn();
-        for (int i = 0; i < maxNumbers.Count; i++)
-        {
-            maxNumbers[i] = 0;
-        }
-        if (!randomColorCheck && !randomObjectCheck) ScoreManager.maxNum = maxNum;
+        ResetValues();
         
+        //if (!randomColorCheck && !randomObjectCheck) ScoreManager.maxNum = maxNum;
+        if (!randomObjectCheck) ObjectDetected.correctTag = spawnObject.tag;
 
-        
+
 
         ObjectDetected.randomColorCheck = randomColorCheck;
 
-        
-
-        
+        Spawn();
     }
 
     // Update is called once per frame
@@ -78,16 +73,8 @@ public class SpawnManager : MonoBehaviour
             }
             if(i == maxNum - 1)
             {
-                if (!randomObjectCheck) ObjectDetected.correctTag = spawnObject.tag;
-                else
-                {
-                    index = Random.Range(0, spawnObjects.Count);
-                    ObjectDetected.correctTag = spawnObjects[index].tag;
-                    ScoreManager.maxNum = maxNumbers[index];
-                    Debug.Log(spawnObjects[index].tag);
-                    Debug.Log("Max numbers: " + maxNumbers[index]);
-                }
 
+                ScoreManager.maxNum = SetMaxValue();
             }
         }
     }
@@ -137,7 +124,29 @@ public class SpawnManager : MonoBehaviour
         return radius;
     }
 
-
+    int SetMaxValue()
+    {
+        int num = 0;
+        if (randomColorCheck)
+        {
+            index = Random.Range(0, maxNumbers.Count);
+            num = SpawnManager.maxNumbers[index];
+            Debug.Log(index);
+        }
+        if (randomObjectCheck)
+        {
+            index = Random.Range(0, spawnObjects.Count);
+            ObjectDetected.correctTag = spawnObjects[index].tag;
+            num = maxNumbers[index];
+            Debug.Log(spawnObjects[index].tag);
+            Debug.Log("Max numbers: " + maxNumbers[index]);
+        }
+        if(!randomObjectCheck && !randomColorCheck)
+        {
+            num = maxNum;
+        }
+        return num;
+    }
     void ChangeColor()
     {
         int random = Random.Range(0, 4);
@@ -154,7 +163,6 @@ public class SpawnManager : MonoBehaviour
             case 2:
                 objectSR.color = Color.red;
                 maxNumbers[2]++;
-                Debug.Log("Red object" + maxNumbers[2]);
                 break;
             case 3:
                 objectSR.color = Color.yellow;
@@ -172,27 +180,38 @@ public class SpawnManager : MonoBehaviour
         {
             case 0:
                 spawnObject = spawnObjects[0];
-                Debug.Log("Daire oluþturuldu");
                 maxNumbers[0]++;
                 break;
             case 1:
                 spawnObject = spawnObjects[1];
-                Debug.Log("Kare oluþturuldu");
                 maxNumbers[1]++;
                 break;
             case 2:
                 spawnObject = spawnObjects[2];
-                Debug.Log("Dikdörtgen oluþturuldu");
                 maxNumbers[2]++;
                 break;
             case 3:
                 spawnObject = spawnObjects[3];
-                Debug.Log("Üçgen oluþturuldu");
                 maxNumbers[3]++;
                 break;
             default:
                 break;
         }
+    }
+
+    void ResetValues()
+    {
+        for (int i = 0; i < maxNumbers.Count; i++)
+        {
+            maxNumbers[i] = 0;
+        }
+        //if (randomObjectCheck)
+        //{
+            for (int i = 0; i < spawnObjects.Count; i++)
+            {
+                spawnObjects[i].GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        //}
     }
 
 }

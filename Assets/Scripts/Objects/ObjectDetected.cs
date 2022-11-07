@@ -8,22 +8,17 @@ public class ObjectDetected : MonoBehaviour
     Touch touch;
 
     public static string correctTag;
-    List<string> allTags;
+    //List<string> allTags;
 
     public static bool randomColorCheck;
 
     List<Color> correctColor = new List<Color> { Color.blue, Color.green, Color.red, Color.yellow };
 
-    int index;
+    //int index;
 
     private void Start()
     {
-        if (randomColorCheck)
-        {
-            index = Random.Range(0, correctColor.Count);
-            ScoreManager.maxNum = SpawnManager.maxNumbers[index];
-            Debug.Log(index);
-        }
+        
     }
 
     // Update is called once per frame
@@ -51,7 +46,7 @@ public class ObjectDetected : MonoBehaviour
                 else
                 {
                     SpriteRenderer objectSR = hit.collider.gameObject.GetComponent<SpriteRenderer>();
-                    if (objectSR.color == correctColor[index])
+                    if (objectSR.color == correctColor[SpawnManager.index])
                     {
                         ScoreManager.currentNum++;
                         hit.collider.gameObject.SetActive(false);
