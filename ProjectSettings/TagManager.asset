@@ -4,26 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - "\xDC\xE7gen"
-  - Kare
-  - "Dikd\xF6rtgen"
-  - Daire
-  - KDaire
-  - MDaire
-  - SDaire
-  - YDaire
-  - KKare
-  - YKare
-  - SKare
-  - "KDikd\xF6rtgen"
-  - "YDikd\xF6rtgen"
-  - "SDikd\xF6rtgen"
-  - "K\xDC\xE7gen"
-  - "S\xDC\xE7gen"
-  - "Y\xDC\xE7gen"
-  - MKare
-  - "MDikd\xF6rtgen"
-  - "M\xDC\xE7gen"
+  - Player2
+  - Enemy
+  - Bullet
+  - Ground
+  - Pickup
   layers:
   - Default
   - TransparentFX
@@ -58,6 +43,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 145232093
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Gameplay
+    uniqueID: 1087635889
     locked: 0

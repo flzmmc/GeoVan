@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] bool randomColorCheck, randomObjectCheck;
 
-    [SerializeField] string type;
+    //[SerializeField] string type;
 
     public static List<int> maxNumbers =new List<int> {0, 0, 0, 0};
 
@@ -53,7 +53,7 @@ public class SpawnManager : MonoBehaviour
             float yPos = Random.Range(minY, maxY);
 
             Vector3 spawnPos = new Vector3(xPos, yPos, 0f);
-            float radius = SetSize(type);
+            float radius = SetSize(spawnObject.tag);
 
 
             Collider2D isCollide = Physics2D.OverlapCircle(spawnPos, radius);
@@ -82,7 +82,7 @@ public class SpawnManager : MonoBehaviour
     float SetSize(string type)
     {
         float radius = 1f;
-        if (type == "Regular")
+        if (type == "Daire" || type == "Kare")
         {
             float size = Random.Range(sizeMin, sizeMax);
 
@@ -90,7 +90,7 @@ public class SpawnManager : MonoBehaviour
 
             spawnObject.transform.localScale = new Vector3(size, size, 0f);
         }
-        else if (type == "Irregular")
+        else if (type == "Dikdörtgen" || type == "Üçgen")
         {
             bool check = true;
 
