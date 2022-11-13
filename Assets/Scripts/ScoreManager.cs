@@ -9,10 +9,13 @@ public class ScoreManager : MonoBehaviour
 
     public static int currentNum, maxNum;
 
+    [SerializeField] int minScore, MaxScore;
+
     // Start is called before the first frame update
     void Start()
     {
         currentNum = 0;
+        if (!ObjectDetected.randomColorCheck) maxNum = Random.Range(minScore, MaxScore);
     }
 
     // Update is called once per frame

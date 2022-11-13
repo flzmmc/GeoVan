@@ -14,6 +14,7 @@ public class ObjectDetected : MonoBehaviour
 
     List<Color> correctColor = new List<Color> { Color.blue, Color.green, Color.red, Color.yellow };
 
+
     //int index;
 
     private void Start()
@@ -27,7 +28,7 @@ public class ObjectDetected : MonoBehaviour
         TouchDetect();
         NextLevel(ScoreManager.currentNum);
     }
-    public virtual void TouchDetect()
+    void TouchDetect()
     {
         if (Input.touchCount > 0)
         {
@@ -40,7 +41,7 @@ public class ObjectDetected : MonoBehaviour
                 if (!randomColorCheck)
                 {
                     ScoreManager.currentNum++;
-                    hit.collider.gameObject.SetActive(false);
+                    StartCoroutine(ObjectReset(hit));
 
                 }
                 else
@@ -49,7 +50,7 @@ public class ObjectDetected : MonoBehaviour
                     if (objectSR.color == correctColor[SpawnManager.index])
                     {
                         ScoreManager.currentNum++;
-                        hit.collider.gameObject.SetActive(false);
+                        StartCoroutine(ObjectReset(hit));
                     }
                 }
             }
@@ -57,50 +58,19 @@ public class ObjectDetected : MonoBehaviour
         }
     }
 
-    //public virtual void TouchColorDetect()
-    //{
-    //    if (Input.touchCount > 0)
-    //    {
-    //        touch = Input.GetTouch(0);
-    //        ray = Camera.main.ScreenPointToRay(touch.position);
-    //        hit = Physics2D.GetRayIntersection(ray);
-
-    //    }
-    //}
-
     public void NextLevel(int num)
     {
-        //Debug.Log("Current: " + currentNum + "Number: " + num);
         if(num == ScoreManager.maxNum)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
-    //protected void ChooseTag(List<string> allTags)
-    //{
-    //    int random = Random.Range(0, 4);
-    //    switch (random)
-    //    {
+    IEnumerator ObjectReset(RaycastHit2D hit)
+    {
+        hit.collider.gameObject.SetActive(false);
+        yield return new WaitForSeconds(3);
+        hit.collider.gameObject.SetActive(true);
+    }
 
-    //        case 0:
-    //            correctTag = allTags[0];
-    //            ScoreManager.maxNum = SpawnManager.maxNumbers[0];
-    //            break;
-    //        case 1:
-    //            correctTag = allTags[1];
-    //            ScoreManager.maxNum = SpawnManager.maxNumbers[1];
-    //            break;
-    //        case 2:
-    //            correctTag = allTags[2];
-    //            ScoreManager.maxNum = SpawnManager.maxNumbers[2];
-    //            break;
-    //        case 3:
-    //            correctTag = allTags[3];
-    //            ScoreManager.maxNum = SpawnManager.maxNumbers[3];
-    //            break;
-    //        default:
-    //            break;
-    //    }
-    //}
 }

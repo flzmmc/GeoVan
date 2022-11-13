@@ -69,7 +69,6 @@ public class SpawnManager : MonoBehaviour
             else
             {
                 i--;
-                Debug.Log("Collide var");
             }
             if(i == maxNum - 1)
             {
@@ -139,12 +138,11 @@ public class SpawnManager : MonoBehaviour
             ObjectDetected.correctTag = spawnObjects[index].tag;
             num = maxNumbers[index];
             Debug.Log(spawnObjects[index].tag);
-            Debug.Log("Max numbers: " + maxNumbers[index]);
         }
-        if(!randomObjectCheck && !randomColorCheck)
-        {
-            num = maxNum;
-        }
+        //if(!randomObjectCheck && !randomColorCheck)
+        //{
+        //    num = maxNum;
+        //}
         return num;
     }
     void ChangeColor()
