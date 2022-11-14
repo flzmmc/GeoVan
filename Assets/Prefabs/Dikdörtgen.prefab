@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 9157064887292211373}
   - component: {fileID: 9157064887292211372}
   - component: {fileID: 9157064887292211371}
+  - component: {fileID: -641277103709881702}
+  - component: {fileID: 8654594779705018271}
   m_Layer: 0
   m_Name: "Dikd\xF6rtgen"
   m_TagString: "Dikd\xF6rtgen"
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 9157064887292211370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.27, z: 0}
-  m_LocalScale: {x: 1.420869, y: 1.0841994, z: 0}
+  m_LocalScale: {x: 1.4511087, y: 1.186666, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -112,3 +114,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-641277103709881702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9157064887292211370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19d5d91100bf37419aae933b7c964b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8654594779705018271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9157064887292211370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a3113f06bf961459fbfb800d2a1e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpeed: 0.01
+  maxSpeed: 0.02

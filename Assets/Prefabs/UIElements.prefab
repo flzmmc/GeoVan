@@ -1014,7 +1014,8 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 157bfcb76650cdc499eeb737ef784d53, type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 157bfcb76650cdc499eeb737ef784d53,
+    type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -1578,6 +1579,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 7192158818180988789}
+  minScore: 4
+  MaxScore: 7
 --- !u!1 &8166468960201593761
 GameObject:
   m_ObjectHideFlags: 0

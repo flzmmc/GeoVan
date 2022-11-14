@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2391128482702605195}
   - component: {fileID: 2391128482702605194}
   - component: {fileID: 2391128482702605196}
+  - component: {fileID: -6375471882998062684}
+  - component: {fileID: -4119844994578143615}
   m_Layer: 0
   m_Name: "\xDC\xE7gen"
   m_TagString: "\xDC\xE7gen"
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2391128482702605193}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.909, y: -1.146, z: 0}
-  m_LocalScale: {x: 1.0098953, y: 1.4027898, z: 0}
+  m_LocalScale: {x: 1.2538755, y: 1.4488983, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -114,3 +116,29 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5773587}
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
+--- !u!114 &-6375471882998062684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2391128482702605193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19d5d91100bf37419aae933b7c964b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4119844994578143615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2391128482702605193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a3113f06bf961459fbfb800d2a1e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpeed: 0.01
+  maxSpeed: 0.02

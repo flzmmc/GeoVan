@@ -34,21 +34,9 @@ public class ObjectMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        transform.position = startPos;
+        //transform.position = startPos;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bottom"))
-        {
-            StartCoroutine(ResetObject());
-        }
-    }
-
-    IEnumerator ResetObject()
-    {
-        yield return new WaitForSeconds(3);
-        transform.position = startPos;
-    }
+    
 
 }

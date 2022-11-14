@@ -15,7 +15,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         currentNum = 0;
-        if (!ObjectDetected.randomColorCheck) maxNum = Random.Range(minScore, MaxScore);
+        maxNum = Random.Range(minScore, MaxScore);
     }
 
     // Update is called once per frame
