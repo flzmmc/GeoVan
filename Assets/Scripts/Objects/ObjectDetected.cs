@@ -19,14 +19,13 @@ public class ObjectDetected : MonoBehaviour
 
     private void Start()
     {
-        index = Random.Range(0, correctColor.Count);
+        if(randomColorCheck) index = Random.Range(0, correctColor.Count);
     }
 
     // Update is called once per frame
     void Update()
     {
         TouchDetect();
-        NextLevel(ScoreManager.currentNum);
     }
     void TouchDetect()
     {
@@ -58,13 +57,7 @@ public class ObjectDetected : MonoBehaviour
         }
     }
 
-    public void NextLevel(int num)
-    {
-        if(num == ScoreManager.maxNum)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-    }
+    
 
     IEnumerator ObjectReset(RaycastHit2D hit)
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ScoreManager : MonoBehaviour
@@ -22,5 +23,14 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         scoreText.text = currentNum.ToString() + " / " + maxNum.ToString();
+        NextLevel(currentNum);
+    }
+
+    void NextLevel(int num)
+    {
+        if (num == maxNum)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }

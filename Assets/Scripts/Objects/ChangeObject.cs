@@ -6,6 +6,10 @@ public class ChangeObject : MonoBehaviour
 {
     SpriteRenderer objectSR;
 
+    void Awake()
+    {
+        objectSR = GetComponent<SpriteRenderer>();
+    }
 
     private void OnEnable()
     {
@@ -14,18 +18,6 @@ public class ChangeObject : MonoBehaviour
         transform.position = new Vector3(Random.Range(-4.5f, 4.5f), Random.Range(7f, 12f), 0f);
     }
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        objectSR = GetComponent<SpriteRenderer>();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

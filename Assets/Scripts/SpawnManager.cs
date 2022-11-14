@@ -49,6 +49,7 @@ public class SpawnManager : MonoBehaviour
     {
         for(int i = 0; i <spawnNum; i++)
         {
+            if (randomObjectCheck) RandomObstacle();
             float xPos = Random.Range(minX, maxX);
             float yPos = Random.Range(minY, maxY);
 
@@ -60,7 +61,7 @@ public class SpawnManager : MonoBehaviour
             if (!isCollide)
             {
                 //objectSR = spawnObject.GetComponent<SpriteRenderer>();
-                if (randomObjectCheck) RandomObstacle();
+                
                 //if (randomColorCheck) ChangeColor();
                 //else objectSR.color = Color.white;
 
