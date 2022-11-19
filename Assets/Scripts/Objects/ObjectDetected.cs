@@ -40,7 +40,8 @@ public class ObjectDetected : MonoBehaviour
                 if (!randomColorCheck)
                 {
                     ScoreManager.currentNum++;
-                    StartCoroutine(ObjectReset(hit));
+                    //StartCoroutine(ObjectReset(hit));
+                    Destroy(hit.collider.gameObject);
 
                 }
                 else
@@ -49,7 +50,8 @@ public class ObjectDetected : MonoBehaviour
                     if (objectSR.color == correctColor[index])
                     {
                         ScoreManager.currentNum++;
-                        StartCoroutine(ObjectReset(hit));
+                        //StartCoroutine(ObjectReset(hit));
+                        Destroy(hit.collider.gameObject);
                     }
                 }
             }

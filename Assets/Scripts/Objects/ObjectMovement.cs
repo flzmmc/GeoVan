@@ -18,4 +18,12 @@ public class ObjectMovement : MonoBehaviour
         transform.Translate(Vector3.down * speed);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bottom"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

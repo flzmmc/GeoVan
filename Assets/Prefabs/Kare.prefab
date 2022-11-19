@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9056792133828440506}
   - component: {fileID: 9056792133828440501}
   - component: {fileID: 9056792133828440507}
-  - component: {fileID: -2533836685532574922}
   - component: {fileID: -7687000306721571666}
   m_Layer: 0
   m_Name: Kare
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 9056792133828440503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2638738, y: 1.2638738, z: 0}
+  m_LocalScale: {x: 1.4561903, y: 1.4561903, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -114,18 +113,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-2533836685532574922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9056792133828440503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19d5d91100bf37419aae933b7c964b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-7687000306721571666
 MonoBehaviour:
   m_ObjectHideFlags: 0

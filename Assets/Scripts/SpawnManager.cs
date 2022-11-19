@@ -14,29 +14,29 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] float sizeMin, sizeMax;
 
+    [SerializeField] float timer;
+
     [SerializeField] bool randomColorCheck, randomObjectCheck;
-
-    //[SerializeField] string type;
-
-    //public static List<int> maxNumbers =new List<int> {0, 0, 0, 0};
 
     public static int index;
 
-    //SpriteRenderer objectSR;
+    SpriteRenderer objectSR;
 
     // Start is called before the first frame update
     void Start()
     {
-        //ResetValues();
+        timer = 1f;
         index = Random.Range(0, spawnObjects.Count);
-        //if (!randomColorCheck && !randomObjectCheck) ScoreManager.maxNum = maxNum;
         if (!randomObjectCheck) ObjectDetected.correctTag = spawnObject.tag;
         else ObjectDetected.correctTag = spawnObjects[index].tag;
 
 
         ObjectDetected.randomColorCheck = randomColorCheck;
-
-        Spawn();
+        // Invoke fonksiyonu istediðimiz olayý istediðimiz süre sonra çaðýrýr
+        // Ýlk timer deðiþkeni oyun baþladýktan kaç saniye sonra Spawn fonksiyonu çalýþsýn onu söyler
+        // Ýkinci timer deðiþkeni ise kaç saniyede bir bunun tekrar etmesi gerektiðini belirtir
+        InvokeRepeating("Spawn", timer, timer);
+        //Spawn();
     }
 
     // Update is called once per frame
@@ -47,46 +47,46 @@ public class SpawnManager : MonoBehaviour
 
     void Spawn()
     {
-        for(int i = 0; i <spawnNum; i++)
-        {
-            if (randomObjectCheck) RandomObstacle();
+        //for(int i = 0; i <spawnNum; i++)
+        //{
+            if (randomObjectCheck) spawnObject = RandomObstacle();
             float xPos = Random.Range(minX, maxX);
             float yPos = Random.Range(minY, maxY);
 
             Vector3 spawnPos = new Vector3(xPos, yPos, 0f);
-            float radius = SetSize(spawnObject.tag);
+            SetSize(spawnObject.tag);
 
 
-            Collider2D isCollide = Physics2D.OverlapCircle(spawnPos, radius);
-            if (!isCollide)
-            {
-                //objectSR = spawnObject.GetComponent<SpriteRenderer>();
+            //Collider2D isCollide = Physics2D.OverlapCircle(spawnPos, radius);
+            //if (!isCollide)
+            //{
+                objectSR = spawnObject.GetComponent<SpriteRenderer>();
                 
-                //if (randomColorCheck) ChangeColor();
-                //else objectSR.color = Color.white;
+                if (randomColorCheck) ChangeColor();
+                else objectSR.color = Color.white;
 
                 Instantiate(spawnObject, spawnPos, Quaternion.identity);
-            }
-            else
-            {
-                i--;
-            }
+            //}
+            //else
+            //{
+            //    i--;
+            //}
             //if(i == maxNum - 1)
             //{
 
             //    ScoreManager.maxNum = SetMaxValue();
             //}
-        }
+        //}
     }
 
-    float SetSize(string type)
+    void SetSize(string type)
     {
-        float radius = 1f;
+        //float radius = 1f;
         if (type == "Daire" || type == "Kare")
         {
             float size = Random.Range(sizeMin, sizeMax);
 
-            radius = size;
+            //radius = size;
 
             spawnObject.transform.localScale = new Vector3(size, size, 0f);
         }
@@ -107,21 +107,21 @@ public class SpawnManager : MonoBehaviour
                 }
                 else
                 {
-                    if (sizeX > sizeY)
-                    {
-                        radius = sizeX;
-                    }
-                    else
-                    {
-                        radius = sizeY;
-                    }
+                    //if (sizeX > sizeY)
+                    //{
+                    //    radius = sizeX;
+                    //}
+                    //else
+                    //{
+                    //    radius = sizeY;
+                    //}
                     check = false;
                 }
             }
             spawnObject.transform.localScale = new Vector3(sizeX, sizeY, 0f);
         }
 
-        return radius;
+       // return radius;
     }
 
     //int SetMaxValue()
@@ -147,56 +147,49 @@ public class SpawnManager : MonoBehaviour
     //    return num;
     //}
 
-    //void ChangeColor()
-    //{
-    //    int random = Random.Range(0, 4);
-    //    switch (random)
-    //    {
-    //        case 0:
-    //            objectSR.color = Color.blue;
-    //            maxNumbers[0]++;
-    //            break;
-    //        case 1:
-    //            objectSR.color = Color.green;
-    //            maxNumbers[1]++;
-    //            break;
-    //        case 2:
-    //            objectSR.color = Color.red;
-    //            maxNumbers[2]++;
-    //            break;
-    //        case 3:
-    //            objectSR.color = Color.yellow;
-    //            maxNumbers[3]++;
-    //            break;
-    //        default:
-    //            break;
-    //    }
-    //}
-
-    void RandomObstacle()
+    void ChangeColor()
     {
         int random = Random.Range(0, 4);
         switch (random)
         {
             case 0:
-                spawnObject = spawnObjects[0];
-                //maxNumbers[0]++;
+                objectSR.color = Color.blue;
                 break;
             case 1:
-                spawnObject = spawnObjects[1];
-                //maxNumbers[1]++;
+                objectSR.color = Color.green;
                 break;
             case 2:
-                spawnObject = spawnObjects[2];
-                //maxNumbers[2]++;
+                objectSR.color = Color.red;
                 break;
             case 3:
-                spawnObject = spawnObjects[3];
-                //maxNumbers[3]++;
+                objectSR.color = Color.yellow;
                 break;
             default:
                 break;
         }
+    }
+
+    GameObject RandomObstacle()
+    {
+        int random = Random.Range(0, 4);
+        //switch (random)
+        //{
+        //    case 0:
+        //        spawnObject = spawnObjects[0];
+        //        break;
+        //    case 1:
+        //        spawnObject = spawnObjects[1];
+        //        break;
+        //    case 2:
+        //        spawnObject = spawnObjects[2];
+        //        break;
+        //    case 3:
+        //        spawnObject = spawnObjects[3];
+        //        break;
+        //    default:
+        //        break;
+        //}
+        return spawnObjects[random];
     }
 
     //void ResetValues()
