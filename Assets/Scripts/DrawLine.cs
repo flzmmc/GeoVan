@@ -36,6 +36,10 @@ public class DrawLine : MonoBehaviour
                     UpdateLine(tempFingerPos);
                 }
             }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                DeleteLine();
+            }
         }
     }
 
@@ -58,4 +62,8 @@ public class DrawLine : MonoBehaviour
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
     }
 
+    void DeleteLine()
+    {
+        Destroy(currentLine);
+    }
 }
