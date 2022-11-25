@@ -8,7 +8,6 @@ public class ObjectDetected : MonoBehaviour
     Touch touch;
 
     public static string correctTag;
-    //List<string> allTags;
 
     public static bool randomColorCheck;
 
@@ -40,7 +39,6 @@ public class ObjectDetected : MonoBehaviour
                 if (!randomColorCheck)
                 {
                     ScoreManager.currentNum++;
-                    //StartCoroutine(ObjectReset(hit));
                     Destroy(hit.collider.gameObject);
 
                 }
@@ -50,22 +48,12 @@ public class ObjectDetected : MonoBehaviour
                     if (objectSR.color == correctColor[index])
                     {
                         ScoreManager.currentNum++;
-                        //StartCoroutine(ObjectReset(hit));
                         Destroy(hit.collider.gameObject);
                     }
                 }
             }
 
         }
-    }
-
-    
-
-    IEnumerator ObjectReset(RaycastHit2D hit)
-    {
-        hit.collider.gameObject.SetActive(false);
-        yield return new WaitForSeconds(3);
-        hit.collider.gameObject.SetActive(true);
     }
 
 }

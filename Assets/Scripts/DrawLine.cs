@@ -24,11 +24,11 @@ public class DrawLine : MonoBehaviour
         if(Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            if(touch.phase == TouchPhase.Began)
+            if(touch.phase == TouchPhase.Began && ObjectMatching.firstTouch)
             {
                 CreateLine();
             }
-            else if (touch.phase == TouchPhase.Moved)
+            else if (touch.phase == TouchPhase.Moved && ObjectMatching.firstTouch)
             {
                 Vector2 tempFingerPos = Camera.main.ScreenToWorldPoint(touch.position);
                 if(Vector2.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]) > .1f)
@@ -36,7 +36,7 @@ public class DrawLine : MonoBehaviour
                     UpdateLine(tempFingerPos);
                 }
             }
-            else if (touch.phase == TouchPhase.Ended)
+            else if (touch.phase == TouchPhase.Ended && !ObjectMatching.correctAnswer)
             {
                 DeleteLine();
             }
