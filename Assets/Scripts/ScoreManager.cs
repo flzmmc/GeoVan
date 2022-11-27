@@ -12,11 +12,17 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] int minScore, MaxScore;
 
+    [SerializeField] bool matchCheck;
+
     // Start is called before the first frame update
     void Start()
     {
         currentNum = 0;
-        maxNum = Random.Range(minScore, MaxScore);
+        if (!matchCheck) maxNum = Random.Range(minScore, MaxScore);
+        else maxNum = 4;
+        
+        
+        
     }
 
     // Update is called once per frame

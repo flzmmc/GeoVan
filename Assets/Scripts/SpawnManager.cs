@@ -91,24 +91,7 @@ public class SpawnManager : MonoBehaviour
     {
         int random = Random.Range(0, 4);
         List<Color> objectColor = new List<Color> { Color.blue, Color.green, Color.red, Color.yellow };
-        objectSR.color = objectColor[index];
-        //switch (random)
-        //{
-        //    case 0:
-        //        objectSR.color = Color.blue;
-        //        break;
-        //    case 1:
-        //        objectSR.color = Color.green;
-        //        break;
-        //    case 2:
-        //        objectSR.color = Color.red;
-        //        break;
-        //    case 3:
-        //        objectSR.color = Color.yellow;
-        //        break;
-        //    default:
-        //        break;
-        //}
+        objectSR.color = objectColor[random];
     }
 
     GameObject RandomObstacle()

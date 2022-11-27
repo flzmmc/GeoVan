@@ -6,9 +6,13 @@ public class ObjectMatching : MonoBehaviour
 {
     public static bool firstTouch, correctAnswer;
 
+    bool done = false;
+
     Touch touch;
 
     List<GameObject> matchObjects = new List<GameObject>();
+
+    List<GameObject> doneObjects = new List<GameObject>();
 
     private void Start()
     {
@@ -30,15 +34,19 @@ public class ObjectMatching : MonoBehaviour
 
             if (touch.phase == TouchPhase.Began && hit.collider != null && Camera.main.ScreenToWorldPoint(touch.position).x < 0f)
             {
-                correctAnswer = false;
-                firstTouch = true;
-                matchObjects.Add(hit.collider.gameObject);
+                if (matchObjects.Count > 0) matchObjects.Clear();
+                if (doneObjects.Count > 0) done = CheckObject(hit.collider.gameObject);
+                
+                if (!done)
+                {
+                    correctAnswer = false;
+                    firstTouch = true;
+                    matchObjects.Add(hit.collider.gameObject);
+                }
             }
             else if(touch.phase == TouchPhase.Ended && hit.collider == null)
             {
                 firstTouch = false;
-                if(matchObjects.Count > 0) matchObjects.Clear();
-
             }
             else if(touch.phase == TouchPhase.Ended && hit.collider != null && Camera.main.ScreenToWorldPoint(touch.position).x > 0f)
             {
@@ -50,12 +58,29 @@ public class ObjectMatching : MonoBehaviour
         }
     }
 
+    bool CheckObject(GameObject hitObject)
+    {
+        foreach (GameObject obj in doneObjects)
+        {
+            if (hitObject == obj)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     bool Matching()
     {
-        if (matchObjects[1].CompareTag(matchObjects[0].tag)) {
-            matchObjects.Clear();
-            return true; 
+        if (matchObjects[1].CompareTag(matchObjects[0].tag))
+        {
+            doneObjects.Add(matchObjects[0]);
+            ScoreManager.currentNum++;
+            return true;
         }
-        else return false;
+        else
+        {
+            return false;
+        }
     }
 }
