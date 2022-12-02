@@ -32,7 +32,7 @@ public class ObjectMatching : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
 
-            if (touch.phase == TouchPhase.Began && hit.collider != null && Camera.main.ScreenToWorldPoint(touch.position).x < 0f)
+            if (touch.phase == TouchPhase.Began && hit.collider != null)
             {
                 if (matchObjects.Count > 0) matchObjects.Clear();
                 if (doneObjects.Count > 0) done = CheckObject(hit.collider.gameObject);
@@ -48,7 +48,7 @@ public class ObjectMatching : MonoBehaviour
             {
                 firstTouch = false;
             }
-            else if(touch.phase == TouchPhase.Ended && hit.collider != null && Camera.main.ScreenToWorldPoint(touch.position).x > 0f)
+            else if(touch.phase == TouchPhase.Ended && hit.collider != null)
             {
                 matchObjects.Add(hit.collider.gameObject);
                 correctAnswer = Matching();
@@ -72,9 +72,10 @@ public class ObjectMatching : MonoBehaviour
 
     bool Matching()
     {
-        if (matchObjects[1].CompareTag(matchObjects[0].tag))
+        if (matchObjects[0] != matchObjects[1] && matchObjects[1].CompareTag(matchObjects[0].tag))
         {
             doneObjects.Add(matchObjects[0]);
+            doneObjects.Add(matchObjects[1]);
             ScoreManager.currentNum++;
             return true;
         }
