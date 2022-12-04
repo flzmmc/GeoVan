@@ -11,6 +11,19 @@ TagManager:
   - Pickup
   - Daire
   - Bottom
+  - "Dikd\xF6rtgen"
+  - "\xDC\xE7gen"
+  - Kare
+  - LeftFlag
+  - RightFlag
+  - TriangleRoof
+  - SquareRoof
+  - CircleWindow
+  - SquareWindow
+  - Door
+  - DoorHandle
+  - SideWall
+  - MidWall
   layers:
   - Default
   - TransparentFX

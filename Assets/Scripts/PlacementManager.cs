@@ -19,7 +19,7 @@ public class PlacementManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DragObject.isPlacement)
+        if (DragObject.isPlacement && objectTag != null)
         {
             PlaceObject();
         }
@@ -30,27 +30,36 @@ public class PlacementManager : MonoBehaviour
         if(Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            if (gameObject.CompareTag(objectTag) && placementObject != null && touch.phase == TouchPhase.Ended)
+            if (this.gameObject.CompareTag(objectTag) && placementObject != null && touch.phase == TouchPhase.Ended)
             {
+                Debug.Log(this.gameObject.tag);
+                Debug.Log("Giriþ");
                 placementObject.position = transform.position;
-                DragObject.isPlacement = false;
-                Debug.Log("Place: " + DragObject.isPlacement);
+                
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        objectTag = collision.gameObject.tag;
-        placementObject = collision.gameObject.transform;
-        DragObject.isPlacement = true;
+        if (!collision.gameObject.CompareTag("Untagged"))
+        {
+            objectTag = collision.gameObject.tag;
+            placementObject = collision.transform.parent;
+            DragObject.isPlacement = true;
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        DragObject.isPlacement = false;
-        objectTag = null;
-        placementObject = null;
+        if(objectTag != null)
+        {
+            DragObject.isPlacement = false;
+            objectTag = null;
+            placementObject = null;
+        }
+        
     }
 
 }

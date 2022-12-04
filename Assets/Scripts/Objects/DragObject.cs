@@ -11,6 +11,8 @@ public class DragObject : MonoBehaviour
     Transform dragObject;
 
     Vector3 firstPos;
+
+    PlacementManager placementManager = null;
     private void Start()
     {
 
@@ -29,10 +31,14 @@ public class DragObject : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
 
-            
+            if(touch.phase == TouchPhase.Began && hit.collider != null && hit.collider.gameObject.GetComponent<PlacementManager>() != null)
+            {
+                return;
+            }
 
             if (touch.phase == TouchPhase.Began && hit.collider != null)
             {
+
                 dragObject = hit.collider.gameObject.transform;
                 firstPos = dragObject.position;
                 
@@ -45,8 +51,23 @@ public class DragObject : MonoBehaviour
             }
             else if (touch.phase == TouchPhase.Ended && hit.collider != null && !isPlacement)
             {
-                Debug.Log(isPlacement);
                 dragObject.position = firstPos;
+                dragObject = null;
+            }
+            else if (touch.phase == TouchPhase.Ended && hit.collider != null && isPlacement)
+            {
+                if(hit.collider.transform.parent.gameObject != null)
+                {
+                    hit.collider.gameObject.GetComponent<Collider2D>().enabled = false;
+                    hit.collider.transform.parent.gameObject.GetComponent<Collider2D>().enabled = false;
+                }
+                else
+                {
+                    hit.collider.gameObject.GetComponent<Collider2D>().enabled = false;
+                    hit.collider.gameObject.GetComponentInChildren<Collider2D>().enabled = false;
+                }
+
+                DragObject.isPlacement = false;
                 dragObject = null;
             }
 
