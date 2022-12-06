@@ -10,16 +10,17 @@ public class ScoreManager : MonoBehaviour
 
     public static int currentNum, maxNum;
 
-    [SerializeField] int minScore, MaxScore;
+    [SerializeField] int minScore, maxScore;
+    [SerializeField] int fixedScore;
 
-    [SerializeField] bool matchCheck;
+    [SerializeField] bool fixedScoreCheck;
 
     // Start is called before the first frame update
     void Start()
     {
         currentNum = 0;
-        if (!matchCheck) maxNum = Random.Range(minScore, MaxScore);
-        else maxNum = 4;
+        if (!fixedScoreCheck) maxNum = Random.Range(minScore, maxScore);
+        else maxNum = fixedScore;
         
         
         

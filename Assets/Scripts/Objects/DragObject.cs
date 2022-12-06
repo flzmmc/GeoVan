@@ -12,7 +12,6 @@ public class DragObject : MonoBehaviour
 
     Vector3 firstPos;
 
-    PlacementManager placementManager = null;
     private void Start()
     {
 
@@ -23,6 +22,7 @@ public class DragObject : MonoBehaviour
     {
         TouchDetect();
     }
+
     void TouchDetect()
     {
         if (Input.touchCount > 0)
@@ -38,8 +38,11 @@ public class DragObject : MonoBehaviour
 
             if (touch.phase == TouchPhase.Began && hit.collider != null)
             {
-
-                dragObject = hit.collider.gameObject.transform;
+                if (!hit.collider.gameObject.CompareTag("Untagged"))
+                {
+                    dragObject = hit.collider.transform.parent.gameObject.transform;
+                }
+                else dragObject = hit.collider.gameObject.transform;
                 firstPos = dragObject.position;
                 
             }
@@ -56,7 +59,7 @@ public class DragObject : MonoBehaviour
             }
             else if (touch.phase == TouchPhase.Ended && hit.collider != null && isPlacement)
             {
-                if(hit.collider.transform.parent.gameObject != null)
+                if(hit.collider.transform.parent.gameObject != null && hit.collider.transform.parent.gameObject.GetComponent<Collider2D>() != null)
                 {
                     hit.collider.gameObject.GetComponent<Collider2D>().enabled = false;
                     hit.collider.transform.parent.gameObject.GetComponent<Collider2D>().enabled = false;
@@ -67,7 +70,7 @@ public class DragObject : MonoBehaviour
                     hit.collider.gameObject.GetComponentInChildren<Collider2D>().enabled = false;
                 }
 
-                DragObject.isPlacement = false;
+                isPlacement = false;
                 dragObject = null;
             }
 
