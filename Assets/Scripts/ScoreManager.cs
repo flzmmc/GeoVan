@@ -21,9 +21,6 @@ public class ScoreManager : MonoBehaviour
         currentNum = 0;
         if (!fixedScoreCheck) maxNum = Random.Range(minScore, maxScore);
         else maxNum = fixedScore;
-        
-        
-        
     }
 
     // Update is called once per frame
@@ -37,6 +34,9 @@ public class ScoreManager : MonoBehaviour
     {
         if (num == maxNum)
         {
+            LevelManager.level = SceneManager.GetActiveScene().buildIndex;
+            if(LevelManager.level > PlayerPrefs.GetInt("MaxLevel")) PlayerPrefs.SetInt("MaxLevel", LevelManager.level);
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

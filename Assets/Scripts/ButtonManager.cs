@@ -7,7 +7,7 @@ public class ButtonManager : MonoBehaviour
 {
     public void PlayButton()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(PlayerPrefs.GetInt("MaxLevel") + 1);
     }
 
     public void PauseButton()
