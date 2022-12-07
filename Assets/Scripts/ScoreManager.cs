@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ScoreManager : MonoBehaviour
@@ -19,6 +16,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         currentNum = 0;
+        //Eðer sabit skor koþulu yanlýþsa rastgele skor belirler, doðruysa sabit skoru al
         if (!fixedScoreCheck) maxNum = Random.Range(minScore, maxScore);
         else maxNum = fixedScore;
     }
@@ -26,18 +24,9 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         scoreText.text = currentNum.ToString() + " / " + maxNum.ToString();
-        NextLevel(currentNum);
     }
 
-    void NextLevel(int num)
-    {
-        if (num == maxNum)
-        {
-            LevelManager.level = SceneManager.GetActiveScene().buildIndex;
-            if(LevelManager.level > PlayerPrefs.GetInt("MaxLevel")) PlayerPrefs.SetInt("MaxLevel", LevelManager.level);
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-    }
+    
 }

@@ -24,7 +24,7 @@ public class PlacementManager : MonoBehaviour
             PlaceObject();
         }
     }
-
+    //Ekrandan temas kesildiði an eþleþen objelerin taglarý aynýysa parçayý objenin pozisyonuna eþitle
     void PlaceObject()
     {
         if(Input.touchCount > 0)
@@ -39,7 +39,8 @@ public class PlacementManager : MonoBehaviour
             }
         }
     }
-
+    //Deðen objenin tag'ý "Untagged" deðilse objenin tag'ýný string olarak al
+    //Transformunu da objenin parent'ý olarak ayarla
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag("Untagged"))
@@ -49,7 +50,7 @@ public class PlacementManager : MonoBehaviour
         }
         
     }
-
+    //Deðen obje ayrýlýrsa deðerleri sýfýrla
     private void OnTriggerExit2D(Collider2D collision)
     {
         if(objectTag != null)

@@ -10,6 +10,7 @@ public class SpawnRandomly : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Listeden rastgele bir elemanı seç ve yukarıdan aşağıya doğru sırala
         while(objects.Count > 0)
         {
             int index = Random.Range(0, objects.Count);

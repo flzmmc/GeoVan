@@ -22,7 +22,10 @@ public class DragObject : MonoBehaviour
     {
         TouchDetect();
     }
-
+    //Ekrana dokunulursa ve dokunulan objede PlacementManager script'i yoksa
+    //Objenin tag'ý "Untagged" ise objenin ilk pozisyonunu al
+    //Eðer eþleþme olursa Collider2D özelliklerini kapat ve pozisyonunu deðiþtirme
+    //Eðer eþleþtirme olmazsa objenin pozisyonunu ilk pozisyonuna eþitle.
     void TouchDetect()
     {
         if (Input.touchCount > 0)

@@ -6615,6 +6615,7 @@ MonoBehaviour:
   - {fileID: 1234764691}
   - {fileID: 119899140}
   - {fileID: 1237145355}
+  isStart: 1
 --- !u!114 &2024903495
 MonoBehaviour:
   m_ObjectHideFlags: 0

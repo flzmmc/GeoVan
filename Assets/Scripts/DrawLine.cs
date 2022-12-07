@@ -42,7 +42,7 @@ public class DrawLine : MonoBehaviour
             }
         }
     }
-
+    //Parmak dokunuþu olduðu an önceki pozisyonlþarý sil ve parmaðýn dokunduðu yere Line oluþtur
     void CreateLine()
     {
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
@@ -54,14 +54,15 @@ public class DrawLine : MonoBehaviour
         lineRenderer.SetPosition(0, fingerPositions[0]);
         lineRenderer.SetPosition(1, fingerPositions[1]);
     }
-
+    //Parmaðýn hareketini al ve Line'a yeni pozisyon ekle
+    //Pozisyon parmaðýn pozisyonuna eþit olsun
     void UpdateLine(Vector2 newFingerPos)
     {
         fingerPositions.Add(newFingerPos);
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
     }
-
+    //Oluþan Line'ý sil
     void DeleteLine()
     {
         Destroy(currentLine);

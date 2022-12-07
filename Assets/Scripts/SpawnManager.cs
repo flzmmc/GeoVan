@@ -7,7 +7,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject spawnObject;
     [SerializeField] List<GameObject> spawnObjects;
 
-    [SerializeField] int spawnNum;
 
     [SerializeField] float minX, maxX;
     [SerializeField] float minY, maxY;
@@ -30,8 +29,9 @@ public class SpawnManager : MonoBehaviour
         if (!randomObjectCheck) ObjectDetected.correctTag = spawnObject.tag;
         else ObjectDetected.correctTag = spawnObjects[index].tag;
 
-
         ObjectDetected.randomColorCheck = randomColorCheck;
+
+        //Timer süresi aralýklarýyla Spawn adlý fonksiyonu çaðýr
         InvokeRepeating("Spawn", timer, timer);
     }
 
@@ -41,6 +41,7 @@ public class SpawnManager : MonoBehaviour
         
     }
 
+    //Rastgele belirlenen pozisyondan objeyi oluþtur
     void Spawn()
     {
             if (randomObjectCheck) spawnObject = RandomObstacle();
@@ -49,14 +50,15 @@ public class SpawnManager : MonoBehaviour
 
             Vector3 spawnPos = new Vector3(xPos, yPos, 0f);
             SetSize(spawnObject.tag);
-                objectSR = spawnObject.GetComponent<SpriteRenderer>();
+            objectSR = spawnObject.GetComponent<SpriteRenderer>();
                 
-                if (randomColorCheck) ChangeColor();
-                else objectSR.color = Color.white;
+            if (randomColorCheck) ChangeColor();
+            else objectSR.color = Color.white;
 
-                Instantiate(spawnObject, spawnPos, Quaternion.identity);
+            Instantiate(spawnObject, spawnPos, Quaternion.identity);
     }
 
+    //Objenin düzgün bir obje olup olmadýðýný kontrol eder ve ona göre büyüklüðünü belirler
     void SetSize(string type)
     {
         if (type == "Daire" || type == "Kare")
@@ -87,6 +89,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    //Objenin rengini rastgele bir þekilde deðiþtirir
     void ChangeColor()
     {
         int random = Random.Range(0, 4);
@@ -94,6 +97,7 @@ public class SpawnManager : MonoBehaviour
         objectSR.color = objectColor[random];
     }
 
+    //Listedeki objelerden birini rastgele bir þekilde döndürür
     GameObject RandomObstacle()
     {
         int random = Random.Range(0, 4);

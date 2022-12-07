@@ -26,6 +26,10 @@ public class ObjectDetected : MonoBehaviour
     {
         TouchDetect();
     }
+
+    //Parmaðýn dokunuþunu algýlar ve dokunduðu yerde bir obje olup olmadýðýný kontrol eder
+    //Dokunduðu yerde obje varsa tag'ýný ve koþuluna göre rengini kontrol eder
+    //Doðru þekle dokunulduysa þekli siler
     void TouchDetect()
     {
         if (Input.touchCount > 0)
