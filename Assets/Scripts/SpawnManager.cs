@@ -24,7 +24,6 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = 1f;
         index = Random.Range(0, spawnObjects.Count);
         if (!randomObjectCheck) ObjectDetected.correctTag = spawnObject.tag;
         else ObjectDetected.correctTag = spawnObjects[index].tag;
@@ -44,18 +43,18 @@ public class SpawnManager : MonoBehaviour
     //Rastgele belirlenen pozisyondan objeyi oluþtur
     void Spawn()
     {
-            if (randomObjectCheck) spawnObject = RandomObstacle();
-            float xPos = Random.Range(minX, maxX);
-            float yPos = Random.Range(minY, maxY);
+        if (randomObjectCheck) spawnObject = RandomObstacle();
+        float xPos = Random.Range(minX, maxX);
+        float yPos = Random.Range(minY, maxY);
 
-            Vector3 spawnPos = new Vector3(xPos, yPos, 0f);
-            SetSize(spawnObject.tag);
-            objectSR = spawnObject.GetComponent<SpriteRenderer>();
-                
-            if (randomColorCheck) ChangeColor();
-            else objectSR.color = Color.white;
+        Vector3 spawnPos = new Vector3(xPos, yPos, 0f);
+        SetSize(spawnObject.tag);
+        objectSR = spawnObject.GetComponent<SpriteRenderer>();
 
-            Instantiate(spawnObject, spawnPos, Quaternion.identity);
+        if (randomColorCheck) ChangeColor();
+        else objectSR.color = Color.white;
+
+        Instantiate(spawnObject, spawnPos, Quaternion.identity, transform);
     }
 
     //Objenin düzgün bir obje olup olmadýðýný kontrol eder ve ona göre büyüklüðünü belirler

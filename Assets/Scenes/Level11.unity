@@ -242,6 +242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6756025772059155070, guid: 3be5dedfcaf9fcb4c98bbb41c1b6379a,
         type: 3}
+      propertyPath: maxScore
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6756025772059155070, guid: 3be5dedfcaf9fcb4c98bbb41c1b6379a,
+        type: 3}
       propertyPath: minScore
       value: 0
       objectReference: {fileID: 0}
