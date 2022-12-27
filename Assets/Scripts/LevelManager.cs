@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] ParticleSystem leftConfetti, rightConfetti;
     [SerializeField] GameObject spawner;
+    [SerializeField] GameObject confetties;
     [SerializeField] float timer;
 
     bool isLevelUp;
@@ -32,7 +33,7 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        EndLevel(ScoreManager.currentNum);
+        if (SceneManager.GetActiveScene().buildIndex > 0) EndLevel(ScoreManager.currentNum);
         if (isLevelUp) NextLevel();
     }
 
@@ -81,11 +82,13 @@ public class LevelManager : MonoBehaviour
     {
         if (num == ScoreManager.maxNum)
         {
-            level = SceneManager.GetActiveScene().buildIndex;
-            if (level > PlayerPrefs.GetInt("MaxLevel")) PlayerPrefs.SetInt("MaxLevel", LevelManager.level);
-            spawner.SetActive(false);
+            Debug.Log("End level");
             leftConfetti.Play();
             rightConfetti.Play();
+            confetties.SetActive(true);
+            level = SceneManager.GetActiveScene().buildIndex;
+            if (level > PlayerPrefs.GetInt("MaxLevel")) PlayerPrefs.SetInt("MaxLevel", LevelManager.level);
+            if(level <= 10) spawner.SetActive(false);
             isLevelUp = true;
 
         }

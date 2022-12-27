@@ -1726,6 +1726,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1467899628132020957, guid: f2e7fd6bc3646264abe5bc598d226b2d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467899628202459444, guid: f2e7fd6bc3646264abe5bc598d226b2d,
+        type: 3}
+      propertyPath: leftConfetti
+      value: 
+      objectReference: {fileID: 599511030}
+    - target: {fileID: 1467899628202459444, guid: f2e7fd6bc3646264abe5bc598d226b2d,
+        type: 3}
+      propertyPath: rightConfetti
+      value: 
+      objectReference: {fileID: 599511029}
     - target: {fileID: 1467899628202459445, guid: f2e7fd6bc3646264abe5bc598d226b2d,
         type: 3}
       propertyPath: m_RootOrder
@@ -1788,6 +1803,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2e7fd6bc3646264abe5bc598d226b2d, type: 3}
+--- !u!198 &599511029 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5399818490265690482, guid: f2e7fd6bc3646264abe5bc598d226b2d,
+    type: 3}
+  m_PrefabInstance: {fileID: 599511028}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &599511030 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8653786560913800680, guid: f2e7fd6bc3646264abe5bc598d226b2d,
+    type: 3}
+  m_PrefabInstance: {fileID: 599511028}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &612826797
 GameObject:
   m_ObjectHideFlags: 0
