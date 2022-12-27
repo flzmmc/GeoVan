@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelButtons: []
   levelImages: []
+  leftConfetti: {fileID: 8653786560913800680}
+  rightConfetti: {fileID: 5399818490265690482}
   spawner: {fileID: 0}
   confetties: {fileID: 1467899628132020957}
   timer: 4
@@ -160,7 +162,7 @@ PrefabInstance:
     - target: {fileID: 7313781125210242726, guid: f97c6e41722254f42b462b9c0503c105,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f97c6e41722254f42b462b9c0503c105, type: 3}
@@ -173,6 +175,18 @@ GameObject:
 --- !u!4 &1467899628132020958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7313781125210242725, guid: f97c6e41722254f42b462b9c0503c105,
+    type: 3}
+  m_PrefabInstance: {fileID: 8151730562753645691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5399818490265690482 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4310157664970550537, guid: f97c6e41722254f42b462b9c0503c105,
+    type: 3}
+  m_PrefabInstance: {fileID: 8151730562753645691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8653786560913800680 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 664473114036449683, guid: f97c6e41722254f42b462b9c0503c105,
     type: 3}
   m_PrefabInstance: {fileID: 8151730562753645691}
   m_PrefabAsset: {fileID: 0}
