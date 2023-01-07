@@ -28,7 +28,7 @@ public class DragObject : MonoBehaviour
     //Eðer eþleþtirme olmazsa objenin pozisyonunu ilk pozisyonuna eþitle.
     void TouchDetect()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && LevelManager.isPlayable)
         {
             touch = Input.GetTouch(0);
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
@@ -36,6 +36,7 @@ public class DragObject : MonoBehaviour
 
             if(touch.phase == TouchPhase.Began && hit.collider != null && hit.collider.gameObject.GetComponent<PlacementManager>() != null)
             {
+                ScoreManager.isWrong = true;
                 return;
             }
 
@@ -47,22 +48,27 @@ public class DragObject : MonoBehaviour
                 }
                 else dragObject = hit.collider.gameObject.transform;
                 firstPos = dragObject.position;
-                
+
             }
+            else if (touch.phase == TouchPhase.Began && hit.collider == null) ScoreManager.isWrong = true;
+
             else if (touch.phase == TouchPhase.Moved && dragObject != null)
             {
                 Vector3 objectPos = Camera.main.ScreenToWorldPoint(touch.position);
                 objectPos.z = 0f;
                 dragObject.position = objectPos;
             }
+            else if (touch.phase == TouchPhase.Ended && hit.collider == null) ScoreManager.isWrong = true;
+
             else if (touch.phase == TouchPhase.Ended && hit.collider != null && !isPlacement)
             {
                 dragObject.position = firstPos;
                 dragObject = null;
             }
+            
             else if (touch.phase == TouchPhase.Ended && hit.collider != null && isPlacement)
             {
-                if(hit.collider.transform.parent.gameObject != null && hit.collider.transform.parent.gameObject.GetComponent<Collider2D>() != null)
+                if (hit.collider.transform.parent.gameObject != null && hit.collider.transform.parent.gameObject.GetComponent<Collider2D>() != null)
                 {
                     hit.collider.gameObject.GetComponent<Collider2D>().enabled = false;
                     hit.collider.transform.parent.gameObject.GetComponent<Collider2D>().enabled = false;
@@ -76,6 +82,8 @@ public class DragObject : MonoBehaviour
                 isPlacement = false;
                 dragObject = null;
             }
+
+            
 
         }
     }

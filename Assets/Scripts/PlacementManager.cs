@@ -37,6 +37,7 @@ public class PlacementManager : MonoBehaviour
                 ScoreManager.currentNum++;
                 DragObject.isPlacement = true;
             }
+            else ScoreManager.isWrong = true;
         }
     }
     //Deðen objenin tag'ý "Untagged" deðilse objenin tag'ýný string olarak al

@@ -1,26 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!244 &-6866414946036210734
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: d855d4c637e611742acfb118615009ad
-  m_EffectName: Attenuation
-  m_MixLevel: 9064bfbb7b560f3428b95fa20bed1699
-  m_Parameters: []
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MyMixer
+  m_Name: EnvironmentMixer
   m_OutputGroup: {fileID: 0}
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
@@ -31,13 +17,10 @@ AudioMixerController:
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: f680bd52e5d7ed441bcd3a0aeb55b50d
-    name: Background
-  - guid: 828f3fc9c9bc99c4797a76f004b6e300
-    name: World
+    name: Environment
   m_AudioMixerGroupViews:
   - guids:
     - 261e21680c6d16b47a7c51e33a1ab1ba
-    - 79b3639f3b64b8a4381babc339914d2d
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -50,8 +33,7 @@ AudioMixerGroupController:
   m_Name: Master
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 261e21680c6d16b47a7c51e33a1ab1ba
-  m_Children:
-  - {fileID: 7418922293553830890}
+  m_Children: []
   m_Volume: f680bd52e5d7ed441bcd3a0aeb55b50d
   m_Pitch: 597e1903ba61a4f458342f0192341762
   m_Send: 00000000000000000000000000000000
@@ -86,22 +68,3 @@ AudioMixerSnapshotController:
   m_SnapshotID: 4182900701552a443a403c7f6f7f912a
   m_FloatValues: {}
   m_TransitionOverrides: {}
---- !u!243 &7418922293553830890
-AudioMixerGroupController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: World
-  m_AudioMixer: {fileID: 24100000}
-  m_GroupID: 79b3639f3b64b8a4381babc339914d2d
-  m_Children: []
-  m_Volume: 828f3fc9c9bc99c4797a76f004b6e300
-  m_Pitch: 5c997816e0ee2b14c837c0339f820d68
-  m_Send: 00000000000000000000000000000000
-  m_Effects:
-  - {fileID: -6866414946036210734}
-  m_UserColorIndex: 0
-  m_Mute: 0
-  m_Solo: 0
-  m_BypassEffects: 0

@@ -14,7 +14,7 @@ public class ObjectDetected : MonoBehaviour
     List<Color> correctColor = new List<Color> { Color.blue, Color.green, Color.red, Color.yellow };
 
 
-    int index;
+    public static int index;
 
     private void Start()
     {
@@ -32,7 +32,7 @@ public class ObjectDetected : MonoBehaviour
     //Doðru þekle dokunulduysa þekli siler
     void TouchDetect()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && LevelManager.isPlayable)
         {
             touch = Input.GetTouch(0);
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
@@ -54,8 +54,13 @@ public class ObjectDetected : MonoBehaviour
                         ScoreManager.currentNum++;
                         Destroy(hit.collider.gameObject);
                     }
+                    else ScoreManager.isWrong = true;
                 }
             }
+            else if (touch.phase == TouchPhase.Began && hit.collider != null && !hit.collider.gameObject.CompareTag(correctTag))
+                ScoreManager.isWrong = true;
+            else if (touch.phase == TouchPhase.Began && hit.collider == null) ScoreManager.isWrong = true;
+            Debug.Log(LevelManager.isPlayable);
 
         }
     }

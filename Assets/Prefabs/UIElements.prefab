@@ -1645,6 +1645,7 @@ MonoBehaviour:
   maxScore: 8
   fixedScore: 0
   fixedScoreCheck: 0
+  time: 10
 --- !u!1 &8166468960201593761
 GameObject:
   m_ObjectHideFlags: 0

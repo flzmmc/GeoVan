@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -21,15 +22,21 @@ public class SpawnManager : MonoBehaviour
 
     SpriteRenderer objectSR;
 
+    float time;
+
+    AudioManager audioManager;
+    AudioList audioList;
+
     // Start is called before the first frame update
     void Start()
     {
+        Catching();
         index = Random.Range(0, spawnObjects.Count);
         if (!randomObjectCheck) ObjectDetected.correctTag = spawnObject.tag;
         else ObjectDetected.correctTag = spawnObjects[index].tag;
 
         ObjectDetected.randomColorCheck = randomColorCheck;
-
+        StartCoroutine(CorrectAnswerAudio());
         //Timer süresi aralýklarýyla Spawn adlý fonksiyonu çaðýr
         InvokeRepeating("Spawn", timer, timer);
     }
@@ -101,6 +108,39 @@ public class SpawnManager : MonoBehaviour
     {
         int random = Random.Range(0, 4);
         return spawnObjects[random];
+    }
+
+    void Catching()
+    {
+        GameObject audio = GameObject.FindWithTag("AudioManager");
+        audioManager = audio.GetComponent<AudioManager>();
+        audioList = audio.GetComponent<AudioList>();
+    }
+
+    IEnumerator CorrectAnswerAudio()
+    {
+        if (randomColorCheck && !randomObjectCheck)
+        {
+            time = audioManager.SoundTime(audioList.correctColor[ObjectDetected.index]);
+            audioManager.PlayAudio(audioList.correctColor[ObjectDetected.index]);
+            yield return new WaitForSeconds(time);
+            LevelManager.isPlayable = true;
+        }
+        else if (randomObjectCheck && !randomColorCheck)
+        {
+            time = audioManager.SoundTime(audioList.correctShape[index]);
+            audioManager.PlayAudio(audioList.correctShape[index]);
+            yield return new WaitForSeconds(time);
+            LevelManager.isPlayable = true;
+        }
+        else if(randomColorCheck && randomObjectCheck)
+        {
+            int newIndex = (ObjectDetected.index * 4) + index;
+            time = audioManager.SoundTime(audioList.definitionOfCorrectAnswer[newIndex]);
+            audioManager.PlayAudio(audioList.definitionOfCorrectAnswer[newIndex]);
+            yield return new WaitForSeconds(time);
+            LevelManager.isPlayable = true;
+        }
     }
 
 }

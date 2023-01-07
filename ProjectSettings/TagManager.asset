@@ -24,6 +24,7 @@ TagManager:
   - DoorHandle
   - SideWall
   - MidWall
+  - AudioManager
   layers:
   - Default
   - TransparentFX

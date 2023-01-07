@@ -14,11 +14,13 @@ public class ButtonManager : MonoBehaviour
     //Oyundaki zaman akýþýný durdur
     public void PauseButton()
     {
+        LevelManager.isPlayable = false;
         Time.timeScale = 0;
     }
     //Oyundaki zaman akýþýný normale döndür
     public void ResumeButton()
     {
+        LevelManager.isPlayable = false;
         Time.timeScale = 1;
     }
     //Seviyeyi tekrar yükle

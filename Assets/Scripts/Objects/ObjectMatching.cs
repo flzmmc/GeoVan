@@ -29,7 +29,7 @@ public class ObjectMatching : MonoBehaviour
     //Doðru objeye deðerse iki obje arasýndaki çizgiyi sildirme
     void TouchDetect()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && LevelManager.isPlayable)
         {
             touch = Input.GetTouch(0);
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
@@ -44,16 +44,21 @@ public class ObjectMatching : MonoBehaviour
                 matchObjects.Add(hit.collider.gameObject);
                 
             }
+            else if (touch.phase == TouchPhase.Began && hit.collider == null) ScoreManager.isWrong = true;
+
             else if(touch.phase == TouchPhase.Ended && hit.collider == null)
             {
+                ScoreManager.isWrong = true;
                 firstTouch = false;
             }
             else if(touch.phase == TouchPhase.Ended && hit.collider != null)
             {
                 matchObjects.Add(hit.collider.gameObject);
                 correctAnswer = Matching();
+                if (!correctAnswer) ScoreManager.isWrong = true;
                 firstTouch = false;
             }
+            
 
         }
     }
