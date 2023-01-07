@@ -119,7 +119,12 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator CorrectAnswerAudio()
     {
-        if (randomColorCheck && !randomObjectCheck)
+        if(!randomColorCheck && !randomObjectCheck)
+        {
+            LevelManager.isPlayable = true;
+            yield return null;
+        }
+        else if (randomColorCheck && !randomObjectCheck)
         {
             time = audioManager.SoundTime(audioList.correctColor[ObjectDetected.index]);
             audioManager.PlayAudio(audioList.correctColor[ObjectDetected.index]);

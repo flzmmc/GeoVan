@@ -148,6 +148,7 @@ public class LevelManager : MonoBehaviour
             isStart = true;
             if(index <= 10) spawner.SetActive(true);
             else isPlayable = true;
+            Debug.Log(isPlayable);
         }
     }
 
