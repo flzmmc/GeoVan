@@ -195,6 +195,16 @@ PrefabInstance:
       propertyPath: spawner
       value: 
       objectReference: {fileID: 1736352664}
+    - target: {fileID: 4959447977034687510, guid: 88fc5ef702d5cdf4099a46ce141e50be,
+        type: 3}
+      propertyPath: shapes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4959447977034687510, guid: 88fc5ef702d5cdf4099a46ce141e50be,
+        type: 3}
+      propertyPath: shapes.Array.data[0]
+      value: 
+      objectReference: {fileID: 1184307378}
     - target: {fileID: 4959447977034687511, guid: 88fc5ef702d5cdf4099a46ce141e50be,
         type: 3}
       propertyPath: m_Name
@@ -875,12 +885,12 @@ PrefabInstance:
     - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1,
         type: 3}
       propertyPath: maxY
-      value: 12
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1,
         type: 3}
       propertyPath: minY
-      value: 6.5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1,
         type: 3}
@@ -913,6 +923,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2391128482702605193, guid: d2f3851ed5f5e044e8d5df1e9f7ca82b,
         type: 3}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1,
+        type: 3}
+      propertyPath: randomObjectCheck
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105330820285632662, guid: 099ab7af3b9a34049aee8746f03694f1,
+        type: 3}
+      propertyPath: spawnObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5105330820285632663, guid: 099ab7af3b9a34049aee8746f03694f1,
         type: 3}
       propertyPath: m_RootOrder

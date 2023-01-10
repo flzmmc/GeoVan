@@ -39,29 +39,35 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(LevelManager.isPlayable) timer -= Time.deltaTime;
-        if(checkNum < currentNum && currentNum < maxNum && LevelManager.isPlayable)
+        ScoreAudio();
+        scoreText.text = currentNum.ToString() + " / " + maxNum.ToString();
+    }
+    //Oyuncu doðru yaparsa baþarý ses klibini oynat
+    //Oyuncu yanlýþ yaparsa veya timer süresi kadar bir þey yapmazsa yanlýþ cevap ses klibini oynat
+    void ScoreAudio()
+    {
+        if (LevelManager.isPlayable) timer -= Time.deltaTime;
+        if (checkNum < currentNum && currentNum < maxNum && LevelManager.isPlayable)
         {
             checkNum++;
             timer = time;
             PlayAudio(audioList.correctAnswer);
         }
-        if(isWrong || timer <= 0f && LevelManager.isPlayable)
+        if (isWrong || timer <= 0f && LevelManager.isPlayable)
         {
             isWrong = false;
             timer = time;
             PlayAudio(audioList.wrongAnswer);
         }
-        scoreText.text = currentNum.ToString() + " / " + maxNum.ToString();
     }
-
+    //AudioManager objesini bul ve oradaki script'leri yakala
     void Catching()
     {
         GameObject audio = GameObject.FindWithTag("AudioManager");
         audioManager = audio.GetComponent<AudioManager>();
         audioList = audio.GetComponent<AudioList>();
     }
-
+    //Ýçine giren klip listesinden rastgele bir klip döndür
     void PlayAudio(List<AudioClip> clips)
     {
         int index = Random.Range(0, clips.Count);

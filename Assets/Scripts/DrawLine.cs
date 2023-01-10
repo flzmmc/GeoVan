@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,7 +41,7 @@ public class DrawLine : MonoBehaviour
             }
         }
     }
-    //Parmak dokunuþu olduðu an önceki pozisyonlþarý sil ve parmaðýn dokunduðu yere Line oluþtur
+    //Parmak dokunuþu olduðu an önceki pozisyonlarý sil ve parmaðýn dokunduðu yere Line oluþtur
     void CreateLine()
     {
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);

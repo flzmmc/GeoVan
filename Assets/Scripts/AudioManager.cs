@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -13,6 +11,8 @@ public class AudioManager : MonoBehaviour
 
     static AudioManager instance;
 
+    //Sahneler arasý geçiþte bu nesneyi yok etme
+    //Eðer ki bu nesneden baþka bir tane daha oluþtuysa oluþan nesneyi sil
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -30,6 +30,8 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (LevelManager.level == 0) StopAudio();
+        //Background/Environment adlý anahtarlar var mý kontrol et, eðer varsa slider deðerini anahtardaki deðere eþitle
         if (PlayerPrefs.HasKey("Background")) masterSlider.value = PlayerPrefs.GetFloat("Background");
         musicMixer.SetFloat("Background", masterSlider.value);
 
@@ -42,7 +44,7 @@ public class AudioManager : MonoBehaviour
     {
         
     }
-
+    //Ses seviyelerini ayarla ve kaydet
     public void SetMasterVolume(float volume)
     {
         musicMixer.SetFloat("Background", volume);
@@ -54,7 +56,7 @@ public class AudioManager : MonoBehaviour
         environmentMixer.SetFloat("Environment", volume);
         PlayerPrefs.SetFloat("Environment", volume);
     }
-
+    //Ýçine gönderilen klibi oynat, hali hazýrda oynayan bir klip varsa onu kapat yenisini oynat
     public void PlayAudio(AudioClip clip)
     {
         if (environmentAudio.isPlaying)
@@ -65,12 +67,20 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            //Debug.Log(clip);
             environmentAudio.clip = clip;
             environmentAudio.PlayOneShot(clip);
         }
     }
-
+    //Eðer oynayan bir klip varsa onu durdur
+    public void StopAudio()
+    {
+        if (environmentAudio.isPlaying)
+        {
+            environmentAudio.Stop();
+            environmentAudio.clip = null;
+        }
+    }
+    //Klibin uzunluðunu hesapla ve deðeri döndür
     public float SoundTime(AudioClip clip)
     {
         return clip.length;

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -38,6 +37,7 @@ public class LevelManager : MonoBehaviour
         level = SceneManager.GetActiveScene().buildIndex;
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
+            audioManager.StopAudio();
             SetUnlockedLevel();
         }
     }
@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour
         //MaxLevel sayýsýna kadar olan butonlarý aktif eder
         foreach (Button button in levelButtons)
         {
-            if (openLevel <= PlayerPrefs.GetInt("MaxLevel"))
+            if (openLevel < PlayerPrefs.GetInt("MaxLevel"))
                 button.enabled = true;
             else break;
 
@@ -64,7 +64,7 @@ public class LevelManager : MonoBehaviour
         //MaxLevel sayýsýna kadar olan butonlarýn renklerini deðiþtirir
         foreach (Image image in levelImages)
         {
-            if (openLevel <= PlayerPrefs.GetInt("MaxLevel"))
+            if (openLevel < PlayerPrefs.GetInt("MaxLevel"))
                 image.color = new Color(255, 255, 255, 255);
             else break;
             openLevel++;
@@ -96,13 +96,14 @@ public class LevelManager : MonoBehaviour
             isPlayable = false;
             isEnd = true;
             level = SceneManager.GetActiveScene().buildIndex;
-            if (level + 1 > PlayerPrefs.GetInt("MaxLevel")) PlayerPrefs.SetInt("MaxLevel", level + 1);
+            if (level + 1 > PlayerPrefs.GetInt("MaxLevel") && level + 1 <= 12) 
+                PlayerPrefs.SetInt("MaxLevel", level + 1);
             if(level <= 10) spawner.SetActive(false);
             isLevelUp = true;
 
         }
     }
-
+    //Bir sonraki levele geçmeden level sonu ses klibini oynat ve konfetileri çalýþtýr
     void NextLevel()
     {
         isLevelUp = false;
@@ -114,7 +115,7 @@ public class LevelManager : MonoBehaviour
     }
 
     
-
+    // Level sonu klibinin uzunluðu kadar bekle
     IEnumerator WaitForNextLevel()
     {
         if (level <= 11) timer = audioManager.SoundTime(audioList.endOfLevel);
@@ -123,7 +124,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     #endregion
-
+    //Levele göre ses klibini oynat ve klip süresi kadar bekle ardýndan oyunu oynanabilir yap
     IEnumerator StartOfLevel()
     {
         int index = SceneManager.GetActiveScene().buildIndex;
@@ -148,10 +149,9 @@ public class LevelManager : MonoBehaviour
             isStart = true;
             if(index <= 10) spawner.SetActive(true);
             else isPlayable = true;
-            Debug.Log(isPlayable);
         }
     }
-
+    //AudioManager objesini bul ve oradaki script'leri yakala
     void Catching()
     {
         GameObject audio = GameObject.FindWithTag("AudioManager");

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationManger : MonoBehaviour
@@ -6,7 +7,7 @@ public class AnimationManger : MonoBehaviour
     float count, timer;
     [SerializeField] GameObject spawner;
 
-    [SerializeField] GameObject circle;
+    [SerializeField] List<GameObject> shapes;
 
     bool isStart;
     [SerializeField] float speed;
@@ -18,11 +19,10 @@ public class AnimationManger : MonoBehaviour
     void Start()
     {
         Catching();
-        audioManager.PlayAudio(audioList.definitionOfShape[LevelManager.level - 1]);
-        //Debug.Log(LevelManager.level);
-        timer = audioManager.SoundTime(audioList.definitionOfShape[LevelManager.level - 1]);
+        audioManager.PlayAudio(audioList.definitionOfShape[LevelManager.level - 1]);//Þekil tanýmlama klibini oynat
+        timer = audioManager.SoundTime(audioList.definitionOfShape[LevelManager.level - 1]);//Klibin süresini al
 
-        StartCoroutine(Animation());
+        StartCoroutine(AnimationTime());
         isStart = false;
     }
 
@@ -32,13 +32,18 @@ public class AnimationManger : MonoBehaviour
         if (!isStart) AnimationObject();
         
     }
-
+    //Liste içerisindeki elemanlarýn boyutlarýna sinüs deðer aralýðýnda (-1, 1) deðer ekle
     void AnimationObject()
     {
         count += Time.deltaTime * speed;
-        circle.transform.localScale = new Vector3(1f + Mathf.Abs(Mathf.Sin(count)), 1f + Mathf.Abs(Mathf.Sin(count)), 1f);
+        foreach(GameObject shape in shapes)
+        {
+            shape.transform.localScale = new Vector3(1f + Mathf.Abs(Mathf.Sin(count)), 
+                1f + Mathf.Abs(Mathf.Sin(count)), 1f);
+        }
+        
     }
-
+    //AudioManager objesini bul ve oradaki script'leri yakala
     void Catching()
     {
         GameObject audio = GameObject.FindWithTag("AudioManager");
@@ -46,12 +51,13 @@ public class AnimationManger : MonoBehaviour
         audioList = audio.GetComponent<AudioList>();
     }
 
-    IEnumerator Animation()
+    //Timer kadar süre sonrasýnda þekilleri kapat
+    IEnumerator AnimationTime()
     {
         yield return new WaitForSeconds(timer);
         isStart = false;
-        circle.SetActive(false);
-        //spawner.SetActive(true);
+        foreach (GameObject shape in shapes)
+            shape.SetActive(false);
     }
 
 }

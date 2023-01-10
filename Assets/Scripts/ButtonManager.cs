@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    //Kalýnan en son seviyeyi aç
+    //MaxLevel anahtar sözcüðü varsa ve son level 1'den büyükse kalýnan son leveli aç
+    //Deðilse ilk leveli aç
     public void PlayButton()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("MaxLevel") + 1);
+        if (PlayerPrefs.HasKey("MaxLevel") && PlayerPrefs.GetInt("MaxLevel") > 1)
+            SceneManager.LoadScene(PlayerPrefs.GetInt("MaxLevel"));
+        else SceneManager.LoadScene(1);
     }
 
     //Oyundaki zaman akýþýný durdur

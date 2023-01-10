@@ -109,14 +109,14 @@ public class SpawnManager : MonoBehaviour
         int random = Random.Range(0, 4);
         return spawnObjects[random];
     }
-
+    //AudioManager objesini bul ve oradaki script'leri yakala
     void Catching()
     {
         GameObject audio = GameObject.FindWithTag("AudioManager");
         audioManager = audio.GetComponent<AudioManager>();
         audioList = audio.GetComponent<AudioList>();
     }
-
+    //Oyunda ne yapmasý gerektiðini söyleyen ses kliplerini oynat ve süreleri kadar bekle
     IEnumerator CorrectAnswerAudio()
     {
         if(!randomColorCheck && !randomObjectCheck)

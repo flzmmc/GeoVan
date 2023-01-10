@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5105330820285632663
 Transform:
   m_ObjectHideFlags: 0
@@ -44,9 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67cb93b7bf564984384f9d736efb614f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject: {fileID: 1840835522733800983, guid: e47f329d0e49e3b4185034cc9c63feb3, type: 3}
-  maxNum: 5
-  minX: -7.5
-  maxX: 7.5
-  minY: -3.5
-  maxY: 3.5
+  spawnObject: {fileID: 9056792133828440503, guid: 7f1ea2a76c4b4c64d8a8ecd6ab996a44,
+    type: 3}
+  spawnObjects:
+  - {fileID: 1840835522733800983, guid: e47f329d0e49e3b4185034cc9c63feb3, type: 3}
+  - {fileID: 9056792133828440503, guid: 7f1ea2a76c4b4c64d8a8ecd6ab996a44, type: 3}
+  - {fileID: 9157064887292211370, guid: 23b2d84a64d777445a120b8fa7ed7190, type: 3}
+  - {fileID: 2391128482702605193, guid: d2f3851ed5f5e044e8d5df1e9f7ca82b, type: 3}
+  minX: -4.5
+  maxX: 4.5
+  minY: 7
+  maxY: 8
+  sizeMin: 0.75
+  sizeMax: 1.5
+  timer: 2
+  randomColorCheck: 0
+  randomObjectCheck: 1
