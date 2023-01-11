@@ -24,16 +24,13 @@ public class LevelManager : MonoBehaviour
 
     public static bool isStart, isPlayable;
 
-    int openLevel = 0;
     // Start is called before the first frame update
     void Start()
     {
         isStart = false;
         isPlayable = false;
         Catching();
-
         StartCoroutine(StartOfLevel());
-
         level = SceneManager.GetActiveScene().buildIndex;
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
@@ -51,24 +48,15 @@ public class LevelManager : MonoBehaviour
     #region LevelSystem
     void SetUnlockedLevel()
     {
-        //MaxLevel sayýsýna kadar olan butonlarý aktif eder
-        foreach (Button button in levelButtons)
+        if(!PlayerPrefs.HasKey("MaxLevel") || PlayerPrefs.GetInt("MaxLevel") < 1)
         {
-            if (openLevel < PlayerPrefs.GetInt("MaxLevel"))
-                button.enabled = true;
-            else break;
-
-            openLevel++;
+            PlayerPrefs.SetInt("MaxLevel", 1);
         }
-        openLevel = 0;
-        //MaxLevel sayýsýna kadar olan butonlarýn renklerini deðiþtirir
-        foreach (Image image in levelImages)
-        {
-            if (openLevel < PlayerPrefs.GetInt("MaxLevel"))
-                image.color = new Color(255, 255, 255, 255);
-            else break;
-            openLevel++;
 
+        for(int i = 0; i < PlayerPrefs.GetInt("MaxLevel"); i++)
+        {
+            levelButtons[i].enabled = true;
+            levelImages[i].color = new Color(255, 255, 255, 255);
         }
     }
 
