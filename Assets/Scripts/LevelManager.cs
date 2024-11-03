@@ -48,6 +48,7 @@ public class LevelManager : MonoBehaviour
     #region LevelSystem
     void SetUnlockedLevel()
     {
+        Debug.Log(PlayerPrefs.GetInt("MaxLevel"));
         if(!PlayerPrefs.HasKey("MaxLevel") || PlayerPrefs.GetInt("MaxLevel") < 1)
         {
             PlayerPrefs.SetInt("MaxLevel", 1);
